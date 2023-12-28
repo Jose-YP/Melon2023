@@ -1,9 +1,10 @@
 res://Scenes/Main.tscn
-res://Scenes/Player.tscn
 res://Code/Player.gd
+res://Scenes/Player.tscn
 res://Scenes/character.tscn
 res://Scenes/lover.tscn
 res://Scenes/UI.tscn
 res://Scenes/Background.tscn
 res://Scenes/trap.tscn
 res://Scenes/arrow.tscn
+res://Code/arrow.gd

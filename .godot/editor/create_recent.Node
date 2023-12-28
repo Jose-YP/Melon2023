@@ -1,14 +1,14 @@
+Timer
 CollisionShape2D
+Area2D
 RigidBody2D
 RichTextLabel
 Node
 Label
-Timer
 TextureProgressBar
 CollisionPolygon2D
 Node2D
 StaticBody2D
-Area2D
 CanvasLayer
 Control
 RayCast2D

@@ -29,6 +29,8 @@ position = Vector2(122, -12)
 scale = Vector2(0.109375, 1)
 texture = ExtResource("1_i67so")
 
+[node name="BowCooldown" type="Timer" parent="RangedTools"]
+
 [node name="MeleeTools" type="Node2D" parent="."]
 
 [node name="MeleeRange" type="Area2D" parent="MeleeTools"]

@@ -6,6 +6,7 @@
 size = Vector2(166, 57)
 
 [node name="Trap" type="RigidBody2D"]
+collision_mask = 12
 
 [node name="Icon" type="Sprite2D" parent="."]
 scale = Vector2(1.34375, 0.46875)
