@@ -1,13 +1,18 @@
 extends CharacterBody2D
 
 @export var speed: int = 600
-@export var bowDistance: int = 600
+@export var bowDistance: int = 1
 @export var arrow: PackedScene
 @export var trap: PackedScene
 
 @onready var bow = $RangedTools/Bow
+@onready var bowCooldown = $RangedTools/BowCooldown
+@onready var meleeInvisTime = $MeleeTools/InvisTimer
+
+signal shootArrow(arrow, aim)
 
 var currentArrow
+var bowPosition: Vector2
 var drawingBow: bool = false
 var meleeRange: bool = false
 var stealthy: bool = false
@@ -41,6 +46,8 @@ func _process(delta):
 	#----------------------------------------------
 	#RANGED CONTROL
 	#----------------------------------------------
+	bowPosition = (bow.position * aim.normalized()) + position
+	
 	if not meleeRange:
 		if drawingBow:
 			if Input.is_action_pressed("Action"): #As long as action is held, keep aiming
@@ -51,12 +58,14 @@ func _process(delta):
 				currentArrow.look_at(aim)
 			
 			if Input.is_action_just_released("Action"): #When released shoot arrow
-				drawingBow = false
-				bow.hide()
-				
 				currentArrow.freeze = false
 				currentArrow.linear_velocity = aim * bowDistance
+				currentArrow.apply_central_force(currentArrow.linear_velocity)
+				currentArrow.arrowTime.start()
+				shootArrow.emit(currentArrow, aim)
+				
 				print("Shoot ", aim, "With: ", currentArrow.linear_velocity)
+		
 		else:
 			if Input.is_action_just_pressed("Action"): #spawn the arrow
 				drawingBow = true
@@ -69,6 +78,13 @@ func _process(delta):
 				currentArrow.show()
 				currentArrow.freeze = true
 				$RangedTools.add_child(currentArrow)
+	
+	#----------------------------------------------
+	#MELEE CONTROL
+	#----------------------------------------------
+	else:
+		pass
+	
 
 #----------------------------------------------
 #SIGNALS

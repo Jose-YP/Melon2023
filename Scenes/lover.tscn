@@ -3,3 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://26yvoiikd1pl" path="res://Scenes/character.tscn" id="1_3vq3f"]
 
 [node name="StaticBody2D" instance=ExtResource("1_3vq3f")]
+
+[node name="Icon" parent="." index="0"]
+modulate = Color(1, 0, 1, 1)
+
+[node name="MeleeArea" type="Marker2D" parent="." index="3"]
+position = Vector2(-78, -28)

@@ -11,6 +11,7 @@ size = Vector2(15, 18)
 
 [node name="Arrow" type="RigidBody2D"]
 scale = Vector2(-1, -1)
+gravity_scale = 0.01
 script = ExtResource("1_o5cxo")
 
 [node name="Icon" type="Sprite2D" parent="."]
@@ -22,7 +23,7 @@ position = Vector2(22, 0)
 shape = SubResource("RectangleShape2D_8j0wl")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 1.25
 
 [node name="StickArea" type="Area2D" parent="."]
 

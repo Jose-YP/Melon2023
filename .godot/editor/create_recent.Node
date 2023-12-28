@@ -1,3 +1,6 @@
+Marker2D
+Node2D
+RayCast2D
 Timer
 CollisionShape2D
 Area2D
@@ -7,8 +10,6 @@ Node
 Label
 TextureProgressBar
 CollisionPolygon2D
-Node2D
 StaticBody2D
 CanvasLayer
 Control
-RayCast2D

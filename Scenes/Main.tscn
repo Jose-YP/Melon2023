@@ -14,13 +14,17 @@ script = ExtResource("1_v2ock")
 position = Vector2(348, 214)
 
 [node name="TestCharacter" parent="Characters" instance=ExtResource("2_36bu7")]
-position = Vector2(-200, 235)
+position = Vector2(-262, 313)
 
 [node name="TestLover" parent="Characters" instance=ExtResource("3_sb2b3")]
-position = Vector2(538, 231)
+position = Vector2(636, 315)
+script = null
 
 [node name="Player" parent="." instance=ExtResource("2_ssk07")]
 position = Vector2(348, 214)
+scale = Vector2(0.45, 0.45)
+
+[node name="Projectiles" type="Node2D" parent="."]
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -36,3 +40,5 @@ position = Vector2(348, 214)
 
 [node name="BackgroundObject" parent="Background" instance=ExtResource("5_ck750")]
 position = Vector2(206, 411)
+
+[connection signal="shootArrow" from="Player" to="." method="_on_player_shoot_arrow"]

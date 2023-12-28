@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://26yvoiikd1pl"]
+[gd_scene load_steps=4 format=3 uid="uid://26yvoiikd1pl"]
 
+[ext_resource type="Script" path="res://Code/character.gd" id="1_8yxad"]
 [ext_resource type="Texture2D" uid="uid://demmdpdkaxemx" path="res://Assets/icon.svg" id="1_k7qb8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ofii5"]
 size = Vector2(126, 124)
 
 [node name="Character" type="StaticBody2D"]
+script = ExtResource("1_8yxad")
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(-1, 1)
@@ -17,8 +19,11 @@ shape = SubResource("RectangleShape2D_ofii5")
 [node name="Looking" type="Node2D" parent="."]
 
 [node name="Forward" type="RayCast2D" parent="Looking"]
-target_position = Vector2(120, 0)
+target_position = Vector2(407, 0)
 
 [node name="Up" type="RayCast2D" parent="Looking"]
 scale = Vector2(-1, -1)
-target_position = Vector2(0, 120)
+target_position = Vector2(0, 297)
+
+[node name="Between" type="RayCast2D" parent="Looking"]
+target_position = Vector2(275, -252)
