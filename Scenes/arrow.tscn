@@ -7,7 +7,7 @@
 size = Vector2(10, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cv7nt"]
-size = Vector2(15, 18)
+size = Vector2(21.5, 22)
 
 [node name="Arrow" type="RigidBody2D"]
 scale = Vector2(-1, -1)
@@ -26,11 +26,12 @@ shape = SubResource("RectangleShape2D_8j0wl")
 wait_time = 1.25
 
 [node name="StickArea" type="Area2D" parent="."]
+collision_mask = 17
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StickArea"]
-position = Vector2(22, 0)
+position = Vector2(25.25, 0)
 shape = SubResource("RectangleShape2D_cv7nt")
-debug_color = Color(0.866667, 0.352941, 0, 0.419608)
+debug_color = Color(0.952941, 0.0196078, 0.556863, 0.419608)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="StickArea" to="." method="_on_stick_area_area_entered"]

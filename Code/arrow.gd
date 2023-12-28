@@ -19,7 +19,7 @@ func _process(_delta):
 #----------------------------------------------
 #HELPER FUNCTIONS
 #----------------------------------------------
-func stick(): #Not working yet
+func stick():
 	print("Stick!")
 	stickPos = position
 	linear_velocity = Vector2.ZERO
@@ -33,5 +33,5 @@ func stick(): #Not working yet
 func _on_timer_timeout(): #Despawn
 	queue_free()
 
-func _on_stick_area_area_entered(_area): #Stick to whatever it hits
-	call_deferred("stick")
+func _on_stick_area_area_entered(_area):
+	stick()
