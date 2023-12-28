@@ -1,9 +1,9 @@
+CollisionShape2D
+Area2D
 Marker2D
 Node2D
 RayCast2D
 Timer
-CollisionShape2D
-Area2D
 RigidBody2D
 RichTextLabel
 Node

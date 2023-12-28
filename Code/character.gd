@@ -1,11 +1,15 @@
 extends StaticBody2D
 
+@onready var sprite: Sprite2D = $Icon
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	moreReady()
 
+func moreReady(): #Lover will inherit from Character so moreReady can be called on both scripts to keep them same
+	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	processor()
+
+func processor(): #The same applies to processor and process
 	pass

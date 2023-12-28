@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-@onready var arrowTime = $Timer
+@onready var arrowTime: Timer = $Timer
 
 var sticking: bool = false
 var stickPos: Vector2
@@ -12,18 +12,14 @@ func _ready():
 	arrowTime.set_paused(false)
 	arrowTime.set_autostart(false)
 
-func _process(delta):
-	if linear_velocity != Vector2.ZERO:
-		position += linear_velocity * delta
-		
-		#print("Position: ", position, "Velocity: ", linear_velocity)
+func _process(_delta):
 	if sticking == true:
 		position = stickPos
 
 #----------------------------------------------
 #HELPER FUNCTIONS
 #----------------------------------------------
-func stick():
+func stick(): #Not working yet
 	stickPos = position
 	linear_velocity = Vector2.ZERO
 	freeze = true

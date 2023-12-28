@@ -18,7 +18,7 @@ position = Vector2(-262, 313)
 
 [node name="TestLover" parent="Characters" instance=ExtResource("3_sb2b3")]
 position = Vector2(636, 315)
-script = null
+collision_layer = 1
 
 [node name="Player" parent="." instance=ExtResource("2_ssk07")]
 position = Vector2(348, 214)
@@ -42,3 +42,4 @@ position = Vector2(348, 214)
 position = Vector2(206, 411)
 
 [connection signal="shootArrow" from="Player" to="." method="_on_player_shoot_arrow"]
+[connection signal="whisper" from="Player" to="." method="_on_player_whisper"]

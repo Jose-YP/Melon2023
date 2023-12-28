@@ -1,11 +1,33 @@
-[gd_scene load_steps=2 format=3 uid="uid://dpgn1fr0s7wmq"]
+[gd_scene load_steps=6 format=3 uid="uid://dpgn1fr0s7wmq"]
 
 [ext_resource type="PackedScene" uid="uid://26yvoiikd1pl" path="res://Scenes/character.tscn" id="1_3vq3f"]
+[ext_resource type="Shader" path="res://Resources/outline.gdshader" id="2_h4o6r"]
+[ext_resource type="Script" path="res://Code/lover.gd" id="2_noq38"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ya48p"]
+shader = ExtResource("2_h4o6r")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 1.75
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xo6le"]
+radius = 93.1343
 
 [node name="StaticBody2D" instance=ExtResource("1_3vq3f")]
+collision_layer = 13
+collision_mask = 9
+script = ExtResource("2_noq38")
 
 [node name="Icon" parent="." index="0"]
-modulate = Color(1, 0, 1, 1)
+material = SubResource("ShaderMaterial_ya48p")
+use_parent_material = true
 
 [node name="MeleeArea" type="Marker2D" parent="." index="3"]
 position = Vector2(-78, -28)
+
+[node name="Area2D" type="Area2D" parent="." index="4"]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_xo6le")
+debug_color = Color(0.796078, 0.423529, 0, 0.419608)

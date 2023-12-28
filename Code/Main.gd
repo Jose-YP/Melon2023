@@ -1,15 +1,18 @@
 extends Node2D
 
-@onready var player = $Player
+@onready var player: CharacterBody2D = $Player
 
 func _on_player_shoot_arrow(arrow,aim):
-	arrow.position = player.bowPosition
-	arrow.look_at(aim)
 	arrow.get_parent().remove_child(arrow)
 	$Projectiles.add_child(arrow)
-	print(player.bowPosition)
-	print(arrow.position, arrow.rotation)
+	arrow.linear_velocity = player.aim.normalized() * player.bowDistance
+	arrow.apply_central_impulse(arrow.linear_velocity)
+	arrow.global_position = player.bow.global_position
+	arrow.look_at(aim)
 	
 	player.drawingBow = false
 	player.bow.hide()
 	player.rotation = 0 #make this a tween later
+
+func _on_player_whisper(target):
+	print(target.whisperArea)
