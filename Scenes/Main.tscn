@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cyou4j3uw6fhw"]
+[gd_scene load_steps=7 format=3 uid="uid://cyou4j3uw6fhw"]
 
 [ext_resource type="Script" path="res://Code/Main.gd" id="1_v2ock"]
 [ext_resource type="PackedScene" uid="uid://26yvoiikd1pl" path="res://Scenes/character.tscn" id="2_36bu7"]
 [ext_resource type="PackedScene" uid="uid://b6sosotfcatui" path="res://Scenes/Player.tscn" id="2_ssk07"]
 [ext_resource type="PackedScene" uid="uid://dpgn1fr0s7wmq" path="res://Scenes/lover.tscn" id="3_sb2b3"]
 [ext_resource type="PackedScene" uid="uid://nag7h0gar684" path="res://Scenes/Background.tscn" id="5_ck750"]
+[ext_resource type="PackedScene" uid="uid://c7joll78nh307" path="res://Scenes/UI.tscn" id="5_pdl6b"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_v2ock")
@@ -28,8 +29,10 @@ offset_right = 1154.0
 offset_bottom = 648.0
 metadata/_edit_lock_ = true
 
+[node name="CanvasLayer" parent="UI" instance=ExtResource("5_pdl6b")]
+
 [node name="Background" type="Node2D" parent="."]
 position = Vector2(348, 214)
 
 [node name="BackgroundObject" parent="Background" instance=ExtResource("5_ck750")]
-position = Vector2(199, 417)
+position = Vector2(206, 411)

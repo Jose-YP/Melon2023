@@ -44,6 +44,9 @@ func _process(delta):
 				drawingBow = true
 				bow.look_at(aim)
 				bow.show()
+				arrow.instantiate()
+				arrow.position = bow.position
+				arrow.look_at(aim)
 				print("Looking at ", aim)
 
 func _on_melee_range_area_entered(area):
