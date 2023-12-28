@@ -1,0 +1,13 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1703730088
+README.md::TextFile::-1::1703726247::0::1::::<><>::
+::res://Assets/::1703730057
+icon.svg::CompressedTexture2D::7465524712914990967::1703730027::1703730182::1::::<><>::
+::res://Code/::1703730027
+Main.gd::GDScript::-1::1703730027::0::1::::<>Node2D<>::
+::res://Melon2023/::1703730027
+README.md::TextFile::-1::1703730027::0::1::::<><>::
+::res://Scenes/::1703730088
+arrow.tscn::PackedScene::1662468785429673307::1703730027::0::1::::<><>::uid://demmdpdkaxemx::::res://Assets/icon.svg
+Main.tscn::PackedScene::6487541548038394736::1703730088::0::1::::<><>::res://Code/Main.gd<>uid://b6sosotfcatui::::res://Scenes/Player.tscn
+Player.tscn::PackedScene::4600316583142257916::1703730027::0::1::::<><>::uid://demmdpdkaxemx::::res://Assets/icon.svg

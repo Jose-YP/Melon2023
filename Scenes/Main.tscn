@@ -6,5 +6,14 @@
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_v2ock")
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("2_ssk07")]
+[node name="Characters" type="Node2D" parent="."]
 position = Vector2(348, 214)
+
+[node name="Player" parent="." instance=ExtResource("2_ssk07")]
+position = Vector2(348, 214)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1154.0
+offset_bottom = 648.0

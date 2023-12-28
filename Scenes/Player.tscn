@@ -1,20 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6sosotfcatui"]
+[gd_scene load_steps=6 format=3 uid="uid://b6sosotfcatui"]
 
 [ext_resource type="Texture2D" uid="uid://demmdpdkaxemx" path="res://Assets/icon.svg" id="1_i67so"]
+[ext_resource type="Script" path="res://Code/Player.gd" id="1_pcrn1"]
+[ext_resource type="PackedScene" uid="uid://xxkvaoecflv4" path="res://Scenes/arrow.tscn" id="2_1vbe6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hy7cw"]
+size = Vector2(215, 196)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6xev0"]
 size = Vector2(117, 119)
 
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
+script = ExtResource("1_pcrn1")
+arrow = ExtResource("2_1vbe6")
 
 [node name="Character" type="Sprite2D" parent="."]
 position = Vector2(2, -1)
 texture = ExtResource("1_i67so")
-
-[node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(2.5, -0.5)
-shape = SubResource("RectangleShape2D_6xev0")
 
 [node name="RangedTools" type="Node2D" parent="."]
 
@@ -22,3 +25,18 @@ shape = SubResource("RectangleShape2D_6xev0")
 position = Vector2(122, -12)
 scale = Vector2(0.109375, 1)
 texture = ExtResource("1_i67so")
+
+[node name="MeleeTools" type="Node2D" parent="."]
+
+[node name="MeleeRange" type="Area2D" parent="MeleeTools"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeTools/MeleeRange"]
+position = Vector2(5.5, 7)
+shape = SubResource("RectangleShape2D_hy7cw")
+debug_color = Color(0.843137, 0.380392, 0, 0.419608)
+
+[node name="TrapTools" type="Node2D" parent="."]
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(2.5, -0.5)
+shape = SubResource("RectangleShape2D_6xev0")
