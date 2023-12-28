@@ -45,7 +45,7 @@ collision_mask = 24
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeTools/MeleeRange"]
 shape = SubResource("RectangleShape2D_hy7cw")
-debug_color = Color(0.843137, 0.380392, 0, 0.419608)
+debug_color = Color(0.866667, 0.352941, 0, 0.419608)
 
 [node name="InvisTimer" type="Timer" parent="MeleeTools"]
 wait_time = 2.0
