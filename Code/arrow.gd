@@ -20,6 +20,7 @@ func _process(_delta):
 #HELPER FUNCTIONS
 #----------------------------------------------
 func stick(): #Not working yet
+	print("Stick!")
 	stickPos = position
 	linear_velocity = Vector2.ZERO
 	freeze = true

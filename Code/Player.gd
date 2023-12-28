@@ -49,6 +49,11 @@ func _process(delta):
 	
 		elif meleeRange:
 			meleeMove()
+	
+	else:
+		if Input.is_action_just_released("Action"):
+			whispering = false
+	
 
 #----------------------------------------------
 #BASIC CONTROL
