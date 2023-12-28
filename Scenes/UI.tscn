@@ -1,3 +1,52 @@
-[gd_scene format=3 uid="uid://c7joll78nh307"]
+[gd_scene load_steps=5 format=3 uid="uid://c7joll78nh307"]
+
+[sub_resource type="Gradient" id="Gradient_v01qo"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6hg48"]
+gradient = SubResource("Gradient_v01qo")
+width = 620
+height = 59
+fill_from = Vector2(0.509709, 0.153036)
+fill_to = Vector2(0.509709, 0)
+
+[sub_resource type="Gradient" id="Gradient_bmyod"]
+colors = PackedColorArray(0, 0.498375, 0.0692305, 1, 0.214215, 0.501694, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cu3yq"]
+gradient = SubResource("Gradient_bmyod")
+width = 630
+height = 60
 
 [node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="TimerText" type="RichTextLabel" parent="."]
+offset_left = 32.0
+offset_top = 584.0
+offset_right = 89.0
+offset_bottom = 624.0
+text = "Time"
+
+[node name="SuscipsionText" type="RichTextLabel" parent="."]
+offset_left = 237.0
+offset_top = 540.0
+offset_right = 842.0
+offset_bottom = 569.0
+text = "Suspicion"
+
+[node name="SuspicionBar" type="TextureProgressBar" parent="."]
+offset_left = 233.0
+offset_top = 571.0
+offset_right = 853.0
+offset_bottom = 630.0
+value = 50.0
+texture_under = SubResource("GradientTexture2D_6hg48")
+texture_progress = SubResource("GradientTexture2D_cu3yq")
+
+[node name="ScoreText" type="RichTextLabel" parent="."]
+offset_left = 893.0
+offset_top = 575.0
+offset_right = 1037.0
+offset_bottom = 615.0
+text = "Score:"
