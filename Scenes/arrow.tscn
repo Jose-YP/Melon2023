@@ -4,21 +4,21 @@
 [ext_resource type="Texture2D" uid="uid://demmdpdkaxemx" path="res://Assets/icon.svg" id="1_xyo3o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8j0wl"]
-size = Vector2(10, 27)
+size = Vector2(10, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cv7nt"]
-size = Vector2(15, 32)
+size = Vector2(15, 18)
 
 [node name="Arrow" type="RigidBody2D"]
+scale = Vector2(-1, -1)
 script = ExtResource("1_o5cxo")
 
 [node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(0, -1)
-scale = Vector2(1, 0.257813)
+scale = Vector2(0.502347, 0.156967)
 texture = ExtResource("1_xyo3o")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(56, -1.5)
+position = Vector2(22, 0)
 shape = SubResource("RectangleShape2D_8j0wl")
 
 [node name="Timer" type="Timer" parent="."]
@@ -27,7 +27,7 @@ wait_time = 0.5
 [node name="StickArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StickArea"]
-position = Vector2(55.5, -1)
+position = Vector2(22, 0)
 shape = SubResource("RectangleShape2D_cv7nt")
 debug_color = Color(0.866667, 0.352941, 0, 0.419608)
 

@@ -24,9 +24,8 @@ texture = ExtResource("1_i67so")
 [node name="RangedTools" type="Node2D" parent="."]
 
 [node name="Bow" type="Sprite2D" parent="RangedTools"]
-visible = false
-position = Vector2(122, -12)
-scale = Vector2(0.109375, 1)
+position = Vector2(122, 0)
+scale = Vector2(0.1, 1)
 texture = ExtResource("1_i67so")
 
 [node name="BowCooldown" type="Timer" parent="RangedTools"]
