@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://xxkvaoecflv4"]
+
+[ext_resource type="Texture2D" uid="uid://demmdpdkaxemx" path="res://Assets/icon.svg" id="1_xyo3o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8j0wl"]
+size = Vector2(55, 30)
+
+[node name="Arrow" type="RigidBody2D"]
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(1, 0.257813)
+texture = ExtResource("1_xyo3o")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(33.5, 0)
+shape = SubResource("RectangleShape2D_8j0wl")

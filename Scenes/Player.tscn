@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6sosotfcatui"]
+
+[ext_resource type="Texture2D" uid="uid://demmdpdkaxemx" path="res://Assets/icon.svg" id="1_i67so"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6xev0"]
+size = Vector2(117, 119)
+
+[node name="Player" type="CharacterBody2D"]
+motion_mode = 1
+
+[node name="Character" type="Sprite2D" parent="."]
+position = Vector2(2, -1)
+texture = ExtResource("1_i67so")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(2.5, -0.5)
+shape = SubResource("RectangleShape2D_6xev0")
+
+[node name="RangedTools" type="Node2D" parent="."]
+
+[node name="Bow" type="Sprite2D" parent="RangedTools"]
+position = Vector2(122, -12)
+scale = Vector2(0.109375, 1)
+texture = ExtResource("1_i67so")
