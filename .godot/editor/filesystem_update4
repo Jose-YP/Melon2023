@@ -8,3 +8,5 @@ res://Code/arrow.gd
 res://Code/character.gd
 res://Scenes/Player.tscn
 res://Scenes/lover.tscn
+res://Code/Player.gd
+res://Scenes/Background.tscn

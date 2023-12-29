@@ -92,7 +92,7 @@ func wander():
 		await movement(randi_range(200,300))
 	else:
 		if randi_range(0,3) != 1: #1/4th chance of moving back
-			scale.x = scale.x * -1
+			scale.x *= -1
 			facing *= -1
 		await movement(randi_range(200,300))
 

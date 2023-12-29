@@ -49,16 +49,19 @@ func _ready():
 
 func _process(delta):
 	if not whispering:
-		basicMove(delta)
+		if currentLocation == location.GROUNDED:
+			pass
 		
-		if not meleeRange and bowAllowed:
-			rangedMove()
-	
-		elif meleeRange:
-			meleeMove()
+		else:
+			basicMove(delta)
+			
+			if not meleeRange and bowAllowed:
+				rangedMove()
+			
+			elif meleeRange:
+				meleeMove()
 	
 	else:
-		
 		if Input.is_action_just_released("Action"):
 			whispering = false
 			meleeFocus.gettingWhispered = false

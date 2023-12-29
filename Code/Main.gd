@@ -54,20 +54,32 @@ func spawnLover():
 	pass
 
 func loverConfidence(body):
-	if not body.moving:
+	var distance = body.crush.global_position.x - body.global_position.x
+	if not body.moving and abs(distance) > 150:
 		body.assignedMove = body.move.LOVER
 		body.crush.assignedMove = body.move.LOVER
-		print("Crush: ",body.crush)
+		if body.crush.moving:
+			body.crush.currentTween.kill()
+			body.crush.moving = false
 		
-		var distance = body.crush.position.x - body.position.x
+		
 		print(distance)
-		if distance >= 0:
-			pass
+		if distance * body.facing <= 0:
+			print("Facing different directions", distance, body.scale.x)
+			body.scale.x *= -1
+			body.movement(distance)
+		else:
+			print("Facing same directions", distance, body.scale.x)
+			body.movement(-1 * distance)
 		
-		await body.movement(distance)
-		
-		body.inLove = false
+		body.inLove = true
 		body.crush.inLove = true
+	
+	elif abs(distance) <= 150:
+		if body.moving:
+			body.currentTween.kill()
+			body.moving = false
+	
 
 func riseLimits(character,lover = false):
 	if character:
