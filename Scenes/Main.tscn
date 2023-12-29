@@ -16,6 +16,8 @@ size = Vector2(1225, 355)
 
 [node name="MainGame" type="Node2D"]
 script = ExtResource("1_v2ock")
+characterScene = ExtResource("2_36bu7")
+LoverScene = ExtResource("3_sb2b3")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3

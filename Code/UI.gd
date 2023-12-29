@@ -38,7 +38,7 @@ func _on_timer_timeout():
 	var timeText = str("[color=green]",totalTime,"[/color]")
 	timerText.clear()
 	
-	if totalTime == 30:
+	if totalTime == 5:
 		startSpawning.emit()
 	
 	if totalTime > 30:

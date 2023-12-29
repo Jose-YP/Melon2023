@@ -6,7 +6,7 @@ extends StaticBody2D
 
 @export var tweenSpeed: int = 20
 
-signal left(status)
+signal left(body)
 
 var assignedType
 var assignedMove
@@ -73,13 +73,13 @@ func processor(): #The same applies to processor and process
 		
 		move.LEAVE:
 			await movement(1000)
-			if position.x > 1000 or position.x < -400:
+			if global_position.x > 1300 or global_position.x < -500:
 				despawn()
 		
 		move.SPAWN:
 			await movement(randi_range(300,600))
 			moving = false
-			if position.x > -300 and position.x < 900:
+			if global_position.x > -300 and global_position.x < 900:
 				currentTween.kill()
 				assignedMove = move.WANDER
 		
@@ -136,7 +136,7 @@ func activeSkyObserve():
 #HELPER FUNTIONS
 #----------------------------------------------
 func despawn():#Will have other stuff to determine what should be done before they despawn
-	left.emit(inLove)
+	await left.emit(self)
 	queue_free()
 
 #----------------------------------------------

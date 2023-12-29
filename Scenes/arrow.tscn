@@ -22,9 +22,6 @@ texture = ExtResource("1_xyo3o")
 position = Vector2(22, 0)
 shape = SubResource("RectangleShape2D_8j0wl")
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 1.25
-
 [node name="StickArea" type="Area2D" parent="."]
 collision_mask = 17
 
@@ -33,5 +30,8 @@ position = Vector2(25.25, 0)
 shape = SubResource("RectangleShape2D_cv7nt")
 debug_color = Color(0.952941, 0.0196078, 0.556863, 0.419608)
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
 [connection signal="area_entered" from="StickArea" to="." method="_on_stick_area_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_vanish_timeout"]
