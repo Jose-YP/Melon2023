@@ -38,6 +38,7 @@ func _process(_delta):
 		whisperGauge.hide()
 		canWhisper = false
 		gettingWhispered = false
+		$MeleeNodes/MeleeHitbox.monitorable = false
 	
 	if not gettingWhispered and canWhisper:
 		if whisperCooldown.is_stopped():

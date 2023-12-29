@@ -14,7 +14,7 @@ size = Vector2(1170, 205)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6futi"]
 size = Vector2(1225, 355)
 
-[node name="Node2D" type="Node2D"]
+[node name="MainGame" type="Node2D"]
 script = ExtResource("1_v2ock")
 
 [node name="Lovers" type="Node2D" parent="."]

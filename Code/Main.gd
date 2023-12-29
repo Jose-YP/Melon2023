@@ -1,9 +1,14 @@
 extends Node2D
 
+@export_range(2,6) var maxCharacters: int = 2
+@export_range(1,3) var maxLovers: int = 1
+
 @onready var player: CharacterBody2D = $Player
 
 var characterArray: Array = []
 var loverArray: Array = []
+var currentCharacters: int = 2
+var currentLovers: int = 1
 
 #----------------------------------------------
 #INITALIZATION
@@ -31,6 +36,8 @@ func _process(_delta):
 #----------------------------------------------
 #HELPER FUNCTIONS
 #----------------------------------------------
+
+
 
 #----------------------------------------------
 #SIGNALS
