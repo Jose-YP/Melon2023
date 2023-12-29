@@ -9,7 +9,7 @@ extends "res://Code/character.gd"
 
 signal convinced()
 
-var crush
+var crush: StaticBody2D
 var canWhisper: bool = true
 var gettingWhispered: bool = false
 var persuingCrush: bool = false

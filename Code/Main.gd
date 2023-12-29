@@ -4,6 +4,7 @@ extends Node2D
 @export_range(1,3) var maxLovers: int = 1
 
 @onready var player: CharacterBody2D = $Player
+@onready var UI: CanvasLayer = $UI/CanvasLayer
 @onready var spawnArray: Array[Marker2D] = [$SpawnLocations/RightSpawn,$SpawnLocations/LeftSpawn]
 @onready var spawnTimers: Array[Timer] = [$SpawnTimers/ShortTimer,$SpawnTimers/MidTimer,$SpawnTimers/LongTimer]
 
@@ -53,18 +54,26 @@ func spawnLover():
 	pass
 
 func loverConfidence(body):
-	body.assignedMove = body.move.LOVER
-	body.crush = body.move.LOVER
-	print(body.crush.position.x)
-	print(body.position.x)
-	var distance = body.crush.position.x - body.position.x
-	if distance >= 0:
+	if not body.moving:
+		body.assignedMove = body.move.LOVER
+		body.crush.assignedMove = body.move.LOVER
+		print("Crush: ",body.crush)
+		
+		var distance = body.crush.position.x - body.position.x
+		print(distance)
+		if distance >= 0:
+			pass
+		
+		await body.movement(distance)
+		
+		body.inLove = false
+		body.crush.inLove = true
+
+func riseLimits(character,lover = false):
+	if character:
 		pass
-	
-	await body.movement(distance)
-	
-	body.inLove = false
-	body.crush.inLove = true
+	if lover:
+		pass
 
 #----------------------------------------------
 #FAIL STATE
@@ -93,6 +102,11 @@ func getLoverCrush(currentLover):
 			tempCrush = nonLoverArray[randi_range(0,nonLoverArray.size()-1)] 
 	
 	print(currentLover, "Crush: ",currentLover.crush)
+
+func spottedCalc():
+	var playerMod = player.getPlayerModifiers()
+	var timerMod = (UI.totalTime - 5)/100
+	return playerMod + timerMod
 
 #----------------------------------------------
 #SIGNALS
