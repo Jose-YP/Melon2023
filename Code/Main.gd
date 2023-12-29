@@ -27,8 +27,11 @@ func _on_player_shoot_arrow(arrow,aim):
 	#Add back it's position, and rotation
 	arrow.global_position = player.bow.global_position
 	arrow.look_at(aim)
+	
 	#Get arrow velocity and shoot
-	arrow.linear_velocity = player.aim.normalized() * player.bowDistance
+	var arrowRotation = arrow.rotation
+	var rotationVector = Vector2(cos(arrowRotation),sin(arrowRotation)) * -1
+	arrow.linear_velocity = rotationVector * player.bowDistance
 	arrow.apply_central_force(arrow.linear_velocity)
 	
 	#Reset player things
@@ -40,7 +43,7 @@ func _on_player_whisper(target):
 		player.position = target.whisperArea.global_position
 		target.gettingWhispered = true
 
-func _on_test_lover_convinced(target):
+func _on_test_lover_convinced(_target):
 	player.whispering = false
 	
 
