@@ -43,3 +43,9 @@ func _on_player_whisper(target):
 func _on_test_lover_convinced(target):
 	player.whispering = false
 	
+
+func _on_hover_area_area_entered(_area):
+	player.currentLocation = player.location.HOVER
+
+func _on_high_area_area_entered(_area):
+	player.currentLocation= player.location.HIGH

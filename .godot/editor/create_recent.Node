@@ -1,10 +1,10 @@
+CollisionShape2D
+Node2D
+Area2D
 Timer
 Node
-CollisionShape2D
 StaticBody2D
-Area2D
 TextureProgressBar
-Node2D
 Marker2D
 RayCast2D
 RigidBody2D

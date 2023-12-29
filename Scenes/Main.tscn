@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cyou4j3uw6fhw"]
+[gd_scene load_steps=10 format=3 uid="uid://cyou4j3uw6fhw"]
 
 [ext_resource type="Script" path="res://Code/Main.gd" id="1_v2ock"]
 [ext_resource type="PackedScene" uid="uid://26yvoiikd1pl" path="res://Scenes/character.tscn" id="2_36bu7"]
@@ -7,6 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://nag7h0gar684" path="res://Scenes/Background.tscn" id="5_ck750"]
 [ext_resource type="PackedScene" uid="uid://c7joll78nh307" path="res://Scenes/UI.tscn" id="5_pdl6b"]
 [ext_resource type="PackedScene" uid="uid://dguovfu7q45yb" path="res://Scenes/player_bounds.tscn" id="7_s18jr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_73ha5"]
+size = Vector2(1170, 249)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6futi"]
+size = Vector2(1225, 373)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_v2ock")
@@ -55,5 +61,27 @@ position = Vector2(210, -239)
 rotation = 1.5708
 scale = Vector2(1, 1.5)
 
+[node name="Locations" type="Node2D" parent="."]
+
+[node name="HoverArea" type="Area2D" parent="Locations"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Locations/HoverArea"]
+position = Vector2(579, 483.5)
+shape = SubResource("RectangleShape2D_73ha5")
+debug_color = Color(0, 0.6, 0, 0.180392)
+
+[node name="HighArea" type="Area2D" parent="Locations"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Locations/HighArea"]
+position = Vector2(602.5, 176.5)
+shape = SubResource("RectangleShape2D_6futi")
+debug_color = Color(0, 0.6, 0, 0.180392)
+
 [connection signal="shootArrow" from="Player" to="." method="_on_player_shoot_arrow"]
 [connection signal="whisper" from="Player" to="." method="_on_player_whisper"]
+[connection signal="area_entered" from="Locations/HoverArea" to="." method="_on_hover_area_area_entered"]
+[connection signal="area_entered" from="Locations/HighArea" to="." method="_on_high_area_area_entered"]

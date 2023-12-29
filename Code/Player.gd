@@ -27,7 +27,7 @@ var whispering: bool = false
 var stealthy: bool = false
 
 enum location {HIGH,
-	HOVERING,
+	HOVER,
 	GROUNDED}
 enum method {MISC,
 	MELEE,
