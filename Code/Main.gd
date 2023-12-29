@@ -4,8 +4,10 @@ extends Node2D
 @export_range(1,3) var maxLovers: int = 1
 
 @onready var player: CharacterBody2D = $Player
+@onready var spawnArray: Array[Marker2D] = [$SpawnLocations/RightSpawn,$SpawnLocations/LeftSpawn]
 
 var characterArray: Array = []
+var nonLoverArray: Array = []
 var loverArray: Array = []
 var currentCharacters: int = 2
 var currentLovers: int = 1
@@ -15,10 +17,16 @@ var currentLovers: int = 1
 #----------------------------------------------
 func _ready():
 	for character in get_tree().get_nodes_in_group("Character"): #Will have both characters and lovers
-		pass
+		if character.assignedType == character.type.LOVER:
+			loverArray.append(character)
+		else:
+			nonLoverArray.append(character)
 	
 	for lover in get_tree().get_nodes_in_group("Lover"): #Will only have lovers
 		lover.connect("convinced",_on_test_lover_convinced)
+	
+	print(loverArray)
+	print(nonLoverArray)
 
 func _process(_delta):
 	if player.whispering:
@@ -36,7 +44,6 @@ func _process(_delta):
 #----------------------------------------------
 #HELPER FUNCTIONS
 #----------------------------------------------
-
 
 
 #----------------------------------------------

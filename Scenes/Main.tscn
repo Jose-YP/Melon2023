@@ -84,6 +84,14 @@ position = Vector2(602.5, 167.5)
 shape = SubResource("RectangleShape2D_6futi")
 debug_color = Color(0, 0.6, 0, 0.180392)
 
+[node name="SpawnLocations" type="Node2D" parent="."]
+
+[node name="RightSpawn" type="Marker2D" parent="SpawnLocations"]
+position = Vector2(1254, 556)
+
+[node name="LeftSpawn" type="Marker2D" parent="SpawnLocations"]
+position = Vector2(-143, 552)
+
 [connection signal="shootArrow" from="Player" to="." method="_on_player_shoot_arrow"]
 [connection signal="whisper" from="Player" to="." method="_on_player_whisper"]
 [connection signal="area_entered" from="Locations/HoverArea" to="." method="_on_hover_area_area_entered"]

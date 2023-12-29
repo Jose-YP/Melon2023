@@ -1,12 +1,5 @@
-res://Code/UI.gd
-res://Scenes/UI.tscn
-res://Resources/outline.gdshader
-res://Scenes/Main.tscn
-res://Code/Main.gd
 res://Scenes/character.tscn
-res://Code/character.gd
-res://Scenes/Player.tscn
-res://Scenes/lover.tscn
-res://Scenes/player_bounds.tscn
-res://Code/Player.gd
+res://Resources/outline.gdshader
 res://Code/lover.gd
+res://Code/Main.gd
+res://Scenes/Main.tscn
