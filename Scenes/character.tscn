@@ -27,14 +27,32 @@ texture = ExtResource("1_k7qb8")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ofii5")
 
-[node name="Looking" type="Node2D" parent="."]
+[node name="Forward" type="Node2D" parent="."]
 
-[node name="Forward" type="RayCast2D" parent="Looking"]
-target_position = Vector2(407, 0)
+[node name="Forward" type="RayCast2D" parent="Forward"]
+target_position = Vector2(450, 0)
+collision_mask = 2
 
-[node name="Up" type="RayCast2D" parent="Looking"]
-scale = Vector2(-1, -1)
-target_position = Vector2(0, 297)
+[node name="IdleTimers" type="Node" parent="."]
 
-[node name="Between" type="RayCast2D" parent="Looking"]
-target_position = Vector2(275, -252)
+[node name="ShortIdle" type="Timer" parent="IdleTimers"]
+wait_time = 0.5
+
+[node name="MidIdle" type="Timer" parent="IdleTimers"]
+
+[node name="LongIdle" type="Timer" parent="IdleTimers"]
+wait_time = 2.0
+
+[node name="WanderRays" type="Node2D" parent="."]
+
+[node name="Back" type="RayCast2D" parent="WanderRays"]
+target_position = Vector2(-200, 0)
+collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Forward" type="RayCast2D" parent="WanderRays"]
+target_position = Vector2(200, 0)
+collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false

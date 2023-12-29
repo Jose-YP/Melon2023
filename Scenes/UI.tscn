@@ -1,4 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://c7joll78nh307"]
+[gd_scene load_steps=6 format=3 uid="uid://c7joll78nh307"]
+
+[ext_resource type="Script" path="res://Code/UI.gd" id="1_bueya"]
 
 [sub_resource type="Gradient" id="Gradient_v01qo"]
 
@@ -18,15 +20,17 @@ width = 630
 height = 60
 
 [node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_bueya")
 
 [node name="Timer" type="Timer" parent="."]
+autostart = true
 
 [node name="TimerText" type="RichTextLabel" parent="."]
 offset_left = 32.0
 offset_top = 584.0
-offset_right = 89.0
+offset_right = 112.0
 offset_bottom = 624.0
-text = "Time"
+text = "Time: 0"
 
 [node name="SuscipsionText" type="RichTextLabel" parent="."]
 offset_left = 237.0
@@ -49,4 +53,6 @@ offset_left = 893.0
 offset_top = 575.0
 offset_right = 1037.0
 offset_bottom = 615.0
-text = "Score:"
+text = "Score: 0"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

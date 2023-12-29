@@ -1,12 +1,12 @@
+RayCast2D
 Node2D
+Node
+Timer
 CollisionShape2D
 Area2D
-Timer
-Node
 StaticBody2D
 TextureProgressBar
 Marker2D
-RayCast2D
 RigidBody2D
 RichTextLabel
 Label
