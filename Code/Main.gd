@@ -16,6 +16,7 @@ var nonLoverArray: Array = []
 var loverArray: Array = []
 var currentCharacters: int = 2
 var currentLovers: int = 1
+var startedSpawning: bool = false
 
 #----------------------------------------------
 #INITALIZATION
@@ -27,6 +28,7 @@ func _ready():
 		else:
 			nonLoverArray.append(character)
 		characterArray.append(character)
+		character.connect("left",on_despawn)
 	
 	for lover in get_tree().get_nodes_in_group("Lover"): #Will only have lovers
 		lover.connect("convinced",_on_lover_convinced)
@@ -53,32 +55,34 @@ func spawnCharacter():
 func spawnLover():
 	pass
 
-func loverConfidence(body):
-	var distance = body.crush.global_position.x - body.global_position.x
+func loverConfidence(body,crush):
+	var distance = crush.global_position.x - body.global_position.x
+	
 	if not body.moving and abs(distance) > 150:
 		body.assignedMove = body.move.LOVER
-		body.crush.assignedMove = body.move.LOVER
-		if body.crush.moving:
-			body.crush.currentTween.kill()
-			body.crush.moving = false
+		crush.assignedMove = body.move.LOVER
+		if crush.moving:
+			crush.currentTween.kill()
+			crush.moving = false
 		
-		
-		print(distance)
-		if distance * body.facing <= 0:
+		if distance * body.facing <= 0: #If they're facing away from distance
 			print("Facing different directions", distance, body.scale.x)
 			body.scale.x *= -1
 			body.movement(distance)
-		else:
+		else:#If they're facing towards from distance
 			print("Facing same directions", distance, body.scale.x)
 			body.movement(-1 * distance)
 		
 		body.inLove = true
-		body.crush.inLove = true
+		crush.inLove = true
 	
 	elif abs(distance) <= 150:
 		if body.moving:
 			body.currentTween.kill()
 			body.moving = false
+		
+		body.assignedMove = body.move.LEAVE
+		crush.assignedMove = body.move.LEAVE
 	
 
 func riseLimits(character,lover = false):
@@ -117,7 +121,7 @@ func getLoverCrush(currentLover):
 
 func spottedCalc():
 	var playerMod = player.getPlayerModifiers()
-	var timerMod = (UI.totalTime - 5)/100
+	var timerMod = (UI.totalTime - 10)/100
 	return playerMod + timerMod
 
 #----------------------------------------------
@@ -131,7 +135,6 @@ func _on_player_shoot_arrow(arrow,aim):
 	#Add back it's position, and rotation
 	arrow.global_position = player.bow.global_position
 	arrow.look_at(aim)
-	arrow.connect("struckLover",on_lover_hit)
 	
 	#Get arrow velocity and shoot
 	var arrowRotation = arrow.rotation
@@ -148,19 +151,24 @@ func _on_player_whisper(target):
 		player.position = target.whisperArea.global_position
 		target.gettingWhispered = true
 
-func _on_lover_convinced():
+func _on_lover_convinced(body,crush):
 	player.whispering = false
-	loverConfidence(player.meleeFocus)
-
-func on_lover_hit(body):
-	print("Hit ", body)
-	loverConfidence(body)
+	loverConfidence(body,crush)
 
 func _on_hover_area_area_entered(_area):
 	player.currentLocation = player.location.HOVER
 
 func _on_high_area_area_entered(_area):
 	player.currentLocation= player.location.HIGH
+
+func _on_canvas_layer_start_spawning():
+	startedSpawning = true
+
+func on_despawn(status):
+	if status:
+		riseScore.emit()
+	else:
+		pass
 
 func on_spawnTimer_timeout():
 	pass

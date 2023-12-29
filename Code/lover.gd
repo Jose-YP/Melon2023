@@ -7,7 +7,7 @@ extends "res://Code/character.gd"
 @onready var whisperRateTime: Timer = $WhisperNodes/WhisperRate
 @onready var whisperCooldown: Timer = $WhisperNodes/WhisperCooldown
 
-signal convinced()
+signal convinced(body,crush)
 
 var crush: StaticBody2D
 var canWhisper: bool = true
@@ -36,7 +36,7 @@ func _process(_delta):
 			whisperRateTime.start()
 	
 	if whisperGauge.value == whisperMax:
-		convinced.emit()
+		persuingCrush = true
 		whisperGauge.hide()
 		canWhisper = false
 		gettingWhispered = false
@@ -45,6 +45,9 @@ func _process(_delta):
 	if not gettingWhispered and canWhisper:
 		if whisperCooldown.is_stopped():
 			whisperCooldown.start()
+	
+	if persuingCrush and assignedMove != move.LEAVE:
+		convinced.emit(self,crush)
 
 #----------------------------------------------
 #SIGNALS

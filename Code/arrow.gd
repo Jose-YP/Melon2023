@@ -34,8 +34,8 @@ func _on_timer_timeout(): #Despawn
 
 func _on_stick_area_area_entered(area):
 	stick()
-	var struck = area.get_parent().get_parent()
-	print("STRUCK: ", struck)
-	if struck.has_node("WhisperNodes"):
+	var struck = area.get_parent()
+	
+	if (struck.assignedType == struck.type.LOVER) and not struck.hit:
 		struckLover.emit(struck)
-		print("osodv")
+		struck.persuingCrush = true

@@ -106,6 +106,7 @@ one_shot = true
 
 [connection signal="changeSuspect" from="." to="UI/CanvasLayer" method="_on_main_game_change_suspect"]
 [connection signal="riseScore" from="." to="UI/CanvasLayer" method="_on_main_game_rise_score"]
+[connection signal="startSpawning" from="UI/CanvasLayer" to="." method="_on_canvas_layer_start_spawning"]
 [connection signal="shootArrow" from="Player" to="." method="_on_player_shoot_arrow"]
 [connection signal="whisper" from="Player" to="." method="_on_player_whisper"]
 [connection signal="area_entered" from="Locations/HoverArea" to="." method="_on_hover_area_area_entered"]

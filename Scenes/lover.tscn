@@ -62,6 +62,7 @@ position = Vector2(-78, -28)
 [node name="WhisperNodes" type="Node2D" parent="." index="5"]
 
 [node name="WhisperGauge" type="TextureProgressBar" parent="WhisperNodes" index="0"]
+visible = false
 offset_left = -9.0
 offset_top = -110.0
 offset_right = 7.0

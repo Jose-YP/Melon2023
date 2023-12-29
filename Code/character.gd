@@ -6,6 +6,8 @@ extends StaticBody2D
 
 @export var tweenSpeed: int = 20
 
+signal left(status)
+
 var assignedType
 var assignedMove
 var currentDirection
@@ -14,6 +16,7 @@ var facing: int = 1
 var moving: bool = false
 var crushedOn: bool = false
 var inLove: bool = false
+var hit: bool = false
 
 enum type {NONE,
 	LOVER,
@@ -70,12 +73,15 @@ func processor(): #The same applies to processor and process
 		
 		move.LEAVE:
 			await movement(1000)
-			despawn()
+			if position.x > 1000 or position.x < -400:
+				despawn()
 		
 		move.SPAWN:
 			await movement(randi_range(300,600))
 			moving = false
-			assignedMove = move.WANDER
+			if position.x > -300 and position.x < 900:
+				currentTween.kill()
+				assignedMove = move.WANDER
 		
 		move.LOVER:
 			pass
@@ -130,6 +136,7 @@ func activeSkyObserve():
 #HELPER FUNTIONS
 #----------------------------------------------
 func despawn():#Will have other stuff to determine what should be done before they despawn
+	left.emit(inLove)
 	queue_free()
 
 #----------------------------------------------
