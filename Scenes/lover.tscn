@@ -34,17 +34,18 @@ fill_from = Vector2(0.5, 1)
 fill_to = Vector2(0.5, 0)
 metadata/_snap_enabled = true
 
-[node name="StaticBody2D" groups=["Lover"] instance=ExtResource("1_3vq3f")]
+[node name="Lover" groups=["Lover"] instance=ExtResource("1_3vq3f")]
 collision_layer = 13
 collision_mask = 9
 script = ExtResource("2_noq38")
 whisperMax = 8
+metadata/_edit_group_ = true
 
 [node name="Icon" parent="." index="1"]
 material = SubResource("ShaderMaterial_ya48p")
 use_parent_material = true
 
-[node name="MeleeNodes" type="Node" parent="." index="4"]
+[node name="MeleeNodes" type="Node2D" parent="." index="4"]
 
 [node name="MeleeHitbox" type="Area2D" parent="MeleeNodes" index="0"]
 collision_layer = 8
@@ -57,7 +58,7 @@ debug_color = Color(0.866667, 0.352941, 0, 0.419608)
 [node name="MeleeArea" type="Marker2D" parent="MeleeNodes" index="1"]
 position = Vector2(-78, -28)
 
-[node name="WhisperNodes" type="Node" parent="." index="5"]
+[node name="WhisperNodes" type="Node2D" parent="." index="5"]
 
 [node name="WhisperGauge" type="TextureProgressBar" parent="WhisperNodes" index="0"]
 visible = false
@@ -66,7 +67,6 @@ offset_top = -110.0
 offset_right = 7.0
 offset_bottom = -78.0
 max_value = 8.0
-value = 8.0
 fill_mode = 3
 texture_under = SubResource("GradientTexture2D_goeu0")
 texture_progress = SubResource("GradientTexture2D_bvog6")

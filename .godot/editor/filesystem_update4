@@ -6,3 +6,6 @@ res://Scenes/lover.tscn
 res://Scenes/arrow.tscn
 res://Scenes/character.tscn
 res://Code/arrow.gd
+res://Code/character.gd
+res://Code/Player.gd
+res://Code/lover.gd

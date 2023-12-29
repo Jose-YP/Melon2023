@@ -20,16 +20,13 @@ func _process(_delta):
 #HELPER FUNCTIONS
 #----------------------------------------------
 func stick():
-	print("Stick!")
 	stickPos = position
 	linear_velocity = Vector2.ZERO
-	freeze = true
-	lock_rotation = true
 	sticking = true
 
 #----------------------------------------------
 #SIGNALS
-#----------------------------------------------
+#----------------------------------------------w
 func _on_timer_timeout(): #Despawn
 	queue_free()
 

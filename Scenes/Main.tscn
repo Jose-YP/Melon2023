@@ -19,9 +19,8 @@ script = ExtResource("1_v2ock")
 
 [node name="Lovers" type="Node2D" parent="."]
 
-[node name="TestLover" parent="Lovers" instance=ExtResource("3_sb2b3")]
-position = Vector2(984, 529)
-collision_layer = 1
+[node name="StaticBody2D" parent="Lovers" instance=ExtResource("3_sb2b3")]
+position = Vector2(992, 518)
 
 [node name="Characters" type="Node2D" parent="."]
 position = Vector2(348, 214)
@@ -46,6 +45,8 @@ metadata/_edit_lock_ = true
 
 [node name="Boundaries" type="Node2D" parent="."]
 position = Vector2(348, 214)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="BackgroundObject" parent="Boundaries" instance=ExtResource("5_ck750")]
 position = Vector2(206, 411)
@@ -62,6 +63,8 @@ rotation = 1.5708
 scale = Vector2(1, 1.5)
 
 [node name="Locations" type="Node2D" parent="."]
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="HoverArea" type="Area2D" parent="Locations"]
 collision_layer = 2
@@ -85,3 +88,5 @@ debug_color = Color(0, 0.6, 0, 0.180392)
 [connection signal="whisper" from="Player" to="." method="_on_player_whisper"]
 [connection signal="area_entered" from="Locations/HoverArea" to="." method="_on_hover_area_area_entered"]
 [connection signal="area_entered" from="Locations/HighArea" to="." method="_on_high_area_area_entered"]
+
+[editable path="Lovers/StaticBody2D"]

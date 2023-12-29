@@ -112,6 +112,7 @@ func rangedMove():
 #----------------------------------------------
 func meleeMove():
 	if Input.is_action_just_pressed("Action"):
+		print("AA")
 		whisper.emit(meleeFocus)
 		whispering = true
 
@@ -123,12 +124,12 @@ func _on_bow_cooldown_timeout():
 
 func _on_melee_range_area_entered(area): #Make sure sprite has enough empty space to have an outline
 	meleeRange = true
-	meleeFocus = area.get_parent()
+	meleeFocus = area.get_parent().get_parent()
 	meleeFocus.sprite.use_parent_material = false
 
 func _on_melee_range_area_exited(area):
 	meleeRange = false
-	meleeFocus = area.get_parent()
+	meleeFocus = area.get_parent().get_parent()
 	meleeFocus.sprite.use_parent_material = true
 
 func _on_invis_timer_timeout():

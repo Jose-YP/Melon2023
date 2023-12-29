@@ -1,13 +1,13 @@
 extends "res://Code/character.gd"
 
+@export var whisperMax: int = 8
+
 @onready var whisperArea: Marker2D = $MeleeNodes/MeleeArea
 @onready var whisperGauge: TextureProgressBar = $WhisperNodes/WhisperGauge
 @onready var whisperRateTime: Timer = $WhisperNodes/WhisperRate
 @onready var whisperCooldown: Timer = $WhisperNodes/WhisperCooldown
 
-@export var whisperMax: int = 8
-
-signal convinced(target)
+signal convinced()
 
 var canWhisper: bool = true
 var gettingWhispered: bool = false
@@ -34,7 +34,7 @@ func _process(_delta):
 			whisperRateTime.start()
 	
 	if whisperGauge.value == whisperMax:
-		convinced.emit(self)
+		convinced.emit()
 		whisperGauge.hide()
 		canWhisper = false
 		gettingWhispered = false
