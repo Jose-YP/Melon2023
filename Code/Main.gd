@@ -15,6 +15,10 @@ func _ready():
 	for lover in get_tree().get_nodes_in_group("Lover"): #Will only have lovers
 		lover.connect("convinced",_on_test_lover_convinced)
 
+func _process(_delta):
+	if player.whispering:
+		player.position = player.meleeFocus.whisperArea.global_position
+
 #----------------------------------------------
 #GAME LOOP
 #----------------------------------------------

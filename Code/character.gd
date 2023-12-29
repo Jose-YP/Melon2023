@@ -52,7 +52,6 @@ func processor(): #The same applies to processor and process
 						atLeastOne = true
 				
 				if not atLeastOne:
-					print("aaa")
 					idleTimers[randi_range(0,2)].start()
 				
 			move.SEEK:
@@ -62,7 +61,6 @@ func processor(): #The same applies to processor and process
 	
 	if moving:
 		if $WanderRays/Forward.is_colliding():
-			print("KILL")
 			currentTween.kill()
 			moving = false
 	
@@ -72,16 +70,15 @@ func processor(): #The same applies to processor and process
 #----------------------------------------------
 func wander():
 	if $WanderRays/Forward.is_colliding():
-		print("Collide forward")
 		scale.x *= -1
 		facing *= -1
 		await movement(randi_range(200,300))
 	elif $WanderRays/Back.is_colliding():
-		print("Collide backward")
 		await movement(randi_range(200,300))
 	else:
-		if randi_range(0,1) != 1:
+		if randi_range(0,3) != 1: #1/4th chance of moving back
 			scale.x = scale.x * -1
+			facing *= -1
 		await movement(randi_range(200,300))
 
 func seek():
@@ -101,7 +98,6 @@ func movement(distance):
 	moveTween.connect("finished",on_movementTween_finished)
 	
 	moveTween.tween_property($".","position",Vector2(finalPos,position.y),abs(distance)/tweenSpeed)
-	
 
 #----------------------------------------------
 #OBSERVING AI

@@ -21,6 +21,7 @@ var currentMethod
 var direction: Vector2
 var aim: Vector2
 var bowPosition: Vector2
+var whisperPos: Vector2
 var bowAllowed: bool = true
 var drawingBow: bool = false
 var meleeRange: bool = false
@@ -57,6 +58,7 @@ func _process(delta):
 			meleeMove()
 	
 	else:
+		
 		if Input.is_action_just_released("Action"):
 			whispering = false
 			meleeFocus.gettingWhispered = false

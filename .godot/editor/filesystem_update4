@@ -8,3 +8,4 @@ res://Code/character.gd
 res://Scenes/Player.tscn
 res://Scenes/lover.tscn
 res://Scenes/player_bounds.tscn
+res://Code/Player.gd
