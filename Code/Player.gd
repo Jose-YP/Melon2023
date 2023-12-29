@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var arrow: PackedScene
 @export var trap: PackedScene
 
+@onready var newBow: Node2D = $RangedTools #Might transfer rotation job toRanged tools
 @onready var bow: Sprite2D = $RangedTools/Bow
 @onready var bowCooldown: Timer = $RangedTools/BowCooldown
 @onready var meleeInvisTime: Timer = $MeleeTools/InvisTimer
@@ -37,6 +38,9 @@ enum method {MISC,
 #INITALIZATION
 #----------------------------------------------
 func _ready():
+	currentLocation = location.HIGH
+	currentMethod = method.MISC
+	
 	bowCooldown.set_paused(false)
 	bowCooldown.set_autostart(false)
 	meleeInvisTime.set_paused(false)
@@ -56,7 +60,6 @@ func _process(delta):
 		if Input.is_action_just_released("Action"):
 			whispering = false
 			meleeFocus.gettingWhispered = false
-	
 
 #----------------------------------------------
 #BASIC CONTROL
@@ -97,6 +100,7 @@ func rangedMove():
 	else:
 		if Input.is_action_just_pressed("Action"): #spawn the arrow
 			drawingBow = true
+			currentMethod = method.MISC
 			bow.look_at(aim)
 			bow.show()
 			
@@ -114,7 +118,33 @@ func meleeMove():
 	if Input.is_action_just_pressed("Action"):
 		print("AA")
 		whisper.emit(meleeFocus)
+		currentMethod = method.MELEE
 		whispering = true
+
+#----------------------------------------------
+#HELPER FUNCTIONS
+#----------------------------------------------
+func getPlayerModifiers():
+	var locationMod: float = 0.0
+	var methodMod: float = 0.0
+	
+	match currentLocation:
+		location.HIGH:
+			locationMod = 1
+		location.HOVER:
+			locationMod = .5
+		location.GROUNDED:
+			locationMod = 3
+	
+	match currentMethod:
+		method.MISC:
+			methodMod = 0
+		method.MELEE:
+			methodMod = -.5
+		method.TRAP:
+			methodMod = 2
+	
+	return locationMod + methodMod
 
 #----------------------------------------------
 #SIGNALS

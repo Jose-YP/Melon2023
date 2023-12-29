@@ -9,10 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://dguovfu7q45yb" path="res://Scenes/player_bounds.tscn" id="7_s18jr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_73ha5"]
-size = Vector2(1170, 249)
+size = Vector2(1170, 205)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6futi"]
-size = Vector2(1225, 373)
+size = Vector2(1225, 355)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_v2ock")
@@ -71,7 +71,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Locations/HoverArea"]
-position = Vector2(579, 483.5)
+position = Vector2(579, 505.5)
 shape = SubResource("RectangleShape2D_73ha5")
 debug_color = Color(0, 0.6, 0, 0.180392)
 
@@ -80,7 +80,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Locations/HighArea"]
-position = Vector2(602.5, 176.5)
+position = Vector2(602.5, 167.5)
 shape = SubResource("RectangleShape2D_6futi")
 debug_color = Color(0, 0.6, 0, 0.180392)
 
