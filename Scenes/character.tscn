@@ -12,6 +12,7 @@ size = Vector2(126, 124)
 [node name="Character" type="StaticBody2D" groups=["Character"]]
 collision_layer = 5
 script = ExtResource("1_8yxad")
+tweenSpeed = 100
 
 [node name="StickArea" type="Area2D" parent="."]
 
@@ -37,22 +38,26 @@ collision_mask = 2
 
 [node name="ShortIdle" type="Timer" parent="IdleTimers"]
 wait_time = 0.5
+one_shot = true
 
 [node name="MidIdle" type="Timer" parent="IdleTimers"]
+one_shot = true
 
 [node name="LongIdle" type="Timer" parent="IdleTimers"]
 wait_time = 2.0
+one_shot = true
 
 [node name="WanderRays" type="Node2D" parent="."]
+modulate = Color(0, 0, 0, 1)
 
 [node name="Back" type="RayCast2D" parent="WanderRays"]
-target_position = Vector2(-200, 0)
-collision_mask = 2
+position = Vector2(-10, 0)
+target_position = Vector2(-100, 0)
+collision_mask = 16
 collide_with_areas = true
-collide_with_bodies = false
 
 [node name="Forward" type="RayCast2D" parent="WanderRays"]
-target_position = Vector2(200, 0)
-collision_mask = 2
+position = Vector2(10, 0)
+target_position = Vector2(100, 0)
+collision_mask = 16
 collide_with_areas = true
-collide_with_bodies = false

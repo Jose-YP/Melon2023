@@ -45,8 +45,8 @@ metadata/_edit_lock_ = true
 
 [node name="Boundaries" type="Node2D" parent="."]
 position = Vector2(348, 214)
-metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="BackgroundObject" parent="Boundaries" instance=ExtResource("5_ck750")]
 position = Vector2(206, 411)
@@ -55,7 +55,7 @@ position = Vector2(206, 411)
 position = Vector2(-369, 103)
 
 [node name="PlayerBounds2" parent="Boundaries" instance=ExtResource("7_s18jr")]
-position = Vector2(824, 125)
+position = Vector2(819, 127)
 
 [node name="PlayerBounds3" parent="Boundaries" instance=ExtResource("7_s18jr")]
 position = Vector2(210, -239)
@@ -88,5 +88,3 @@ debug_color = Color(0, 0.6, 0, 0.180392)
 [connection signal="whisper" from="Player" to="." method="_on_player_whisper"]
 [connection signal="area_entered" from="Locations/HoverArea" to="." method="_on_hover_area_area_entered"]
 [connection signal="area_entered" from="Locations/HighArea" to="." method="_on_high_area_area_entered"]
-
-[editable path="Lovers/StaticBody2D"]
