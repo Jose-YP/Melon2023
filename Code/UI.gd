@@ -33,3 +33,10 @@ func _on_timer_timeout():
 		timeText = str("[color=red]",totalTime,"[/color]")
 	
 	timerText.append_text(str("Time: ", timeText))
+
+func _on_main_game_rise_score():
+	riseScore()
+
+func _on_main_game_change_suspect(ammount):
+	suspectBar.value += ammount
+	tweenSuspectBar()

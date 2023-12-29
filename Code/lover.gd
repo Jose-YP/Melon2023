@@ -51,6 +51,7 @@ func _process(_delta):
 #----------------------------------------------
 func _on_whisper_rate_timeout():
 	whisperGauge.value += 1
+	print(whisperGauge.value)
 
 func _on_whisper_cooldown_timeout():
 	whisperGauge.value -= 1

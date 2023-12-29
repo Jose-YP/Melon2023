@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dpgn1fr0s7wmq"]
+[gd_scene load_steps=11 format=3 uid="uid://dpgn1fr0s7wmq"]
 
 [ext_resource type="PackedScene" uid="uid://26yvoiikd1pl" path="res://Scenes/character.tscn" id="1_3vq3f"]
 [ext_resource type="Shader" path="res://Resources/outline.gdshader" id="2_h4o6r"]
 [ext_resource type="Script" path="res://Code/lover.gd" id="2_noq38"]
+[ext_resource type="Texture2D" uid="uid://demmdpdkaxemx" path="res://Assets/icon.svg" id="4_ghu5k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ya48p"]
 shader = ExtResource("2_h4o6r")
@@ -61,7 +62,6 @@ position = Vector2(-78, -28)
 [node name="WhisperNodes" type="Node2D" parent="." index="5"]
 
 [node name="WhisperGauge" type="TextureProgressBar" parent="WhisperNodes" index="0"]
-visible = false
 offset_left = -9.0
 offset_top = -110.0
 offset_right = 7.0
@@ -78,6 +78,14 @@ one_shot = true
 [node name="WhisperCooldown" type="Timer" parent="WhisperNodes" index="2"]
 wait_time = 0.75
 one_shot = true
+
+[node name="LoverUI" type="Node2D" parent="." index="8"]
+
+[node name="TextureRect" type="Sprite2D" parent="LoverUI" index="0"]
+modulate = Color(1, 0, 1, 0.552941)
+position = Vector2(30, 0)
+scale = Vector2(0.3125, 0.3125)
+texture = ExtResource("4_ghu5k")
 
 [connection signal="timeout" from="WhisperNodes/WhisperRate" to="." method="_on_whisper_rate_timeout"]
 [connection signal="timeout" from="WhisperNodes/WhisperCooldown" to="." method="_on_whisper_cooldown_timeout"]

@@ -12,13 +12,17 @@ var currentDirection
 var currentTween
 var facing: int = 1
 var moving: bool = false
+var crushedOn: bool = false
+var inLove: bool = false
 
 enum type {NONE,
 	LOVER,
 	TARGETTED}
 enum move {WANDER,
 	SEEK,
-	LEAVE}
+	LEAVE,
+	SPAWN,
+	LOVER}
 enum lookDirections{FORWARD,
 	UPFORWARD,
 	UPWARD}
@@ -43,9 +47,9 @@ func _process(_delta):
 	processor()
 
 func processor(): #The same applies to processor and process
-	if not moving:
-		match assignedMove:
-			move.WANDER:
+	match assignedMove:
+		move.WANDER:
+			if not moving:
 				var atLeastOne = false
 				for timer in idleTimers:
 					if not timer.is_stopped():
@@ -53,17 +57,28 @@ func processor(): #The same applies to processor and process
 				
 				if not atLeastOne:
 					idleTimers[randi_range(0,2)].start()
-				
-			move.SEEK:
-				pass
-			move.LEAVE:
-				pass
-	
-	if moving:
-		if $WanderRays/Forward.is_colliding():
-			currentTween.kill()
+			if moving:
+				if $WanderRays/Forward.is_colliding():
+					currentTween.kill()
+					moving = false
+			
+		move.SEEK:#Unfinished
+			if moving:
+				if $WanderRays/Forward.is_colliding():
+					currentTween.kill()
+					moving = false
+		
+		move.LEAVE:
+			await movement(1000)
+			despawn()
+		
+		move.SPAWN:
+			await movement(randi_range(300,600))
 			moving = false
-	
+			assignedMove = move.WANDER
+		
+		move.LOVER:
+			pass
 
 #----------------------------------------------
 #MOVING AI
@@ -84,13 +99,10 @@ func wander():
 func seek():
 	pass
 
-func leave():
-	pass
-
 func movement(distance):
 	distance *= facing
 	moving = true
-	print("Making: ", moving, "Direction: ", facing)
+	#print("Making: ", moving, " Direction: ", facing)
 	var finalPos = position.x + distance
 	
 	var moveTween = get_tree().create_tween().bind_node(self)
@@ -117,6 +129,8 @@ func activeSkyObserve():
 #----------------------------------------------
 #HELPER FUNTIONS
 #----------------------------------------------
+func despawn():#Will have other stuff to determine what should be done before they despawn
+	queue_free()
 
 #----------------------------------------------
 #SIGNALS
@@ -127,4 +141,3 @@ func on_idleTimer_timeout():
 
 func on_movementTween_finished():
 	moving = false
-	print("Done")

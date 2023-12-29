@@ -3,3 +3,8 @@ res://Resources/outline.gdshader
 res://Code/lover.gd
 res://Code/Main.gd
 res://Scenes/Main.tscn
+res://Code/UI.gd
+res://Code/arrow.gd
+res://Code/character.gd
+res://Scenes/Player.tscn
+res://Scenes/lover.tscn
