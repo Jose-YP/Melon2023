@@ -2,6 +2,12 @@ extends StaticBody2D
 
 @onready var sprite: Sprite2D = $Icon
 
+var assignedType
+
+enum type {NONE,
+	LOVER,
+	TARGETTED}
+
 func _ready():
 	moreReady()
 

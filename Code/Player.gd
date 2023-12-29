@@ -15,6 +15,8 @@ signal whisper(target)
 
 var currentArrow
 var meleeFocus
+var currentLocation
+var currentMethod
 var direction: Vector2
 var aim: Vector2
 var bowPosition: Vector2
@@ -53,6 +55,7 @@ func _process(delta):
 	else:
 		if Input.is_action_just_released("Action"):
 			whispering = false
+			meleeFocus.gettingWhispered = false
 	
 
 #----------------------------------------------

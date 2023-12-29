@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpgn1fr0s7wmq"]
+[gd_scene load_steps=10 format=3 uid="uid://dpgn1fr0s7wmq"]
 
 [ext_resource type="PackedScene" uid="uid://26yvoiikd1pl" path="res://Scenes/character.tscn" id="1_3vq3f"]
 [ext_resource type="Shader" path="res://Resources/outline.gdshader" id="2_h4o6r"]
@@ -10,24 +10,74 @@ shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 1.75
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xo6le"]
-radius = 93.1343
+radius = 107.042
+
+[sub_resource type="Gradient" id="Gradient_6sauu"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_goeu0"]
+gradient = SubResource("Gradient_6sauu")
+width = 16
+height = 32
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_v08to"]
+colors = PackedColorArray(0.7, 0, 0.7, 1, 1, 0.533333, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bvog6"]
+gradient = SubResource("Gradient_v08to")
+width = 16
+height = 32
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
 
 [node name="StaticBody2D" groups=["Lover"] instance=ExtResource("1_3vq3f")]
 collision_layer = 13
 collision_mask = 9
 script = ExtResource("2_noq38")
+whisperMax = 8
 
 [node name="Icon" parent="." index="1"]
 material = SubResource("ShaderMaterial_ya48p")
 use_parent_material = true
 
-[node name="MeleeArea" type="Marker2D" parent="." index="3"]
-position = Vector2(-78, -28)
+[node name="MeleeNodes" type="Node" parent="." index="4"]
 
-[node name="Area2D" type="Area2D" parent="." index="4"]
+[node name="MeleeHitbox" type="Area2D" parent="MeleeNodes" index="0"]
 collision_layer = 8
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeNodes/MeleeHitbox" index="0"]
 shape = SubResource("CircleShape2D_xo6le")
 debug_color = Color(0.866667, 0.352941, 0, 0.419608)
+
+[node name="MeleeArea" type="Marker2D" parent="MeleeNodes" index="1"]
+position = Vector2(-78, -28)
+
+[node name="WhisperNodes" type="Node" parent="." index="5"]
+
+[node name="WhisperGauge" type="TextureProgressBar" parent="WhisperNodes" index="0"]
+visible = false
+offset_left = -9.0
+offset_top = -110.0
+offset_right = 7.0
+offset_bottom = -78.0
+max_value = 8.0
+value = 8.0
+fill_mode = 3
+texture_under = SubResource("GradientTexture2D_goeu0")
+texture_progress = SubResource("GradientTexture2D_bvog6")
+
+[node name="WhisperRate" type="Timer" parent="WhisperNodes" index="1"]
+wait_time = 0.5
+one_shot = true
+
+[node name="WhisperCooldown" type="Timer" parent="WhisperNodes" index="2"]
+wait_time = 0.75
+one_shot = true
+
+[connection signal="timeout" from="WhisperNodes/WhisperRate" to="." method="_on_whisper_rate_timeout"]
+[connection signal="timeout" from="WhisperNodes/WhisperCooldown" to="." method="_on_whisper_cooldown_timeout"]

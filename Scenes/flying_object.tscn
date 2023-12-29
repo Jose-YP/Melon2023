@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://cjtu570l0ocw0"]
+
+[ext_resource type="Texture2D" uid="uid://demmdpdkaxemx" path="res://Assets/icon.svg" id="1_g3pdl"]
+[ext_resource type="Script" path="res://Code/flying_object.gd" id="1_gmqpj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kg0un"]
+size = Vector2(126, 125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jmy8a"]
+size = Vector2(84, 85)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_05imy"]
+size = Vector2(114, 113)
+
+[node name="FlyingObject" type="StaticBody2D"]
+script = ExtResource("1_gmqpj")
+
+[node name="Stick" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Stick"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_kg0un")
+debug_color = Color(0.952941, 0.0196078, 0.556863, 0.419608)
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture = ExtResource("1_g3pdl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -4.5)
+shape = SubResource("RectangleShape2D_jmy8a")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-1, -1.5)
+shape = SubResource("RectangleShape2D_05imy")
+debug_color = Color(0.984314, 0, 0, 0.419608)

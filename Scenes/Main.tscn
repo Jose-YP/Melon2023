@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cyou4j3uw6fhw"]
+[gd_scene load_steps=8 format=3 uid="uid://cyou4j3uw6fhw"]
 
 [ext_resource type="Script" path="res://Code/Main.gd" id="1_v2ock"]
 [ext_resource type="PackedScene" uid="uid://26yvoiikd1pl" path="res://Scenes/character.tscn" id="2_36bu7"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dpgn1fr0s7wmq" path="res://Scenes/lover.tscn" id="3_sb2b3"]
 [ext_resource type="PackedScene" uid="uid://nag7h0gar684" path="res://Scenes/Background.tscn" id="5_ck750"]
 [ext_resource type="PackedScene" uid="uid://c7joll78nh307" path="res://Scenes/UI.tscn" id="5_pdl6b"]
+[ext_resource type="PackedScene" uid="uid://dguovfu7q45yb" path="res://Scenes/player_bounds.tscn" id="7_s18jr"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_v2ock")
@@ -37,11 +38,22 @@ metadata/_edit_lock_ = true
 
 [node name="CanvasLayer" parent="UI" instance=ExtResource("5_pdl6b")]
 
-[node name="Background" type="Node2D" parent="."]
+[node name="Boundaries" type="Node2D" parent="."]
 position = Vector2(348, 214)
 
-[node name="BackgroundObject" parent="Background" instance=ExtResource("5_ck750")]
+[node name="BackgroundObject" parent="Boundaries" instance=ExtResource("5_ck750")]
 position = Vector2(206, 411)
+
+[node name="PlayerBounds" parent="Boundaries" instance=ExtResource("7_s18jr")]
+position = Vector2(-369, 103)
+
+[node name="PlayerBounds2" parent="Boundaries" instance=ExtResource("7_s18jr")]
+position = Vector2(824, 125)
+
+[node name="PlayerBounds3" parent="Boundaries" instance=ExtResource("7_s18jr")]
+position = Vector2(210, -239)
+rotation = 1.5708
+scale = Vector2(1, 1.5)
 
 [connection signal="shootArrow" from="Player" to="." method="_on_player_shoot_arrow"]
 [connection signal="whisper" from="Player" to="." method="_on_player_whisper"]

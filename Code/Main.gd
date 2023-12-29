@@ -5,14 +5,20 @@ extends Node2D
 var characterArray: Array = []
 var loverArray: Array = []
 
+#----------------------------------------------
+#INITALIZATION
+#----------------------------------------------
 func _ready():
 	for character in get_tree().get_nodes_in_group("Character"): #Will have both characters and lovers
 		pass
 	
 	for lover in get_tree().get_nodes_in_group("Lover"): #Will only have lovers
-		pass
+		lover.connect("convinced",_on_test_lover_convinced)
 	
 
+#----------------------------------------------
+#SIGNALS
+#----------------------------------------------
 func _on_player_shoot_arrow(arrow,aim):
 	#Move arrow to projectiles so it won't be affected by player anymore
 	arrow.get_parent().remove_child(arrow)
@@ -30,4 +36,10 @@ func _on_player_shoot_arrow(arrow,aim):
 	player.rotation = 0 #make this a tween later
 
 func _on_player_whisper(target):
-	player.position = target.whisperArea.global_position
+	if target.canWhisper:
+		player.position = target.whisperArea.global_position
+		target.gettingWhispered = true
+
+func _on_test_lover_convinced(target):
+	player.whispering = false
+	

@@ -2,3 +2,4 @@ CollisionShape2D
 Area2D
 Timer
 Node2D
+StaticBody2D
