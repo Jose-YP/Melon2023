@@ -65,6 +65,13 @@ func processor(): #The same applies to processor and process
 					currentTween.kill()
 					moving = false
 			
+			#Ducttape to keep characters inside screen
+			if global_position.x < 0:
+				global_position.x = 0
+			elif global_position.x > 1100:
+				global_position.x = 1100
+				
+			
 		move.SEEK:#Unfinished
 			if moving:
 				if $WanderRays/Forward.is_colliding():
@@ -79,16 +86,12 @@ func processor(): #The same applies to processor and process
 		
 		move.SPAWN:
 			await spawnMovement(randi_range(400,600))
-			print(assignedMove)
 			
 			if global_position.x > 0 and global_position.x < 700:
 				print(global_position)
 				print("Wandering again")
 				assignedMove = move.WANDER
 				moving = false
-		
-		move.LOVER:
-			pass
 
 #----------------------------------------------
 #MOVING AI
@@ -125,14 +128,11 @@ func spawnMovement(distance):
 	distance *= facing
 	moving = true
 	
-	var finalPos = global_position.x + distance
 	var moveTween = get_tree().create_tween().bind_node(self)
 	currentTween = moveTween
 	moveTween.connect("finished",on_movementTween_finished)
 	
-	print("final Position: ",finalPos)
 	moveTween.tween_property($".","global_position",Vector2(distance,520),abs(distance)/(tweenSpeed * 1.5)).from_current()
-	print("Current Global Position: ", global_position)
 
 #----------------------------------------------
 #OBSERVING AI
@@ -165,4 +165,4 @@ func on_idleTimer_timeout():
 
 func on_movementTween_finished():
 	moving = false
-	print(global_position)
+	print(name,":",global_position)

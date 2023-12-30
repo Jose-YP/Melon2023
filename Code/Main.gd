@@ -66,8 +66,10 @@ func spawnCharacter(face, location):
 		loverChance = true
 
 	if currentLovers < maxLovers and loverChance:
+		print("Spawning Lover")
 		spawnCharaMini(face, location, LoverScene)
 	else:
+		print("Spawning Chara")
 		spawnCharaMini(face, location,characterScene)
 
 func spawnCharaMini(face, location,scenetype):
@@ -89,8 +91,6 @@ func spawnCharaMini(face, location,scenetype):
 		CharNew.connect("convinced",_on_lover_convinced)
 		currentLovers += 1
 		getLoverCrush(CharNew)
-	
-	print(CharNew, "was spawned at", CharNew.global_position, "with", location)
 
 func loverConfidence(body,crush):
 	var distance = crush.global_position.x - body.global_position.x
@@ -221,6 +221,4 @@ func on_spawnTimer_timeout():
 	if currentCharacters < maxCharacters:
 		var face = randi_range(0,1)
 		var marker = spawnArray[face]
-		print(marker,"'s Global Position",marker.global_position)
 		spawnCharacter(face, marker.global_position)
-		#print(currentCharacters, "vs. ", maxCharacters)
