@@ -99,11 +99,11 @@ position = Vector2(-128, 500)
 one_shot = true
 
 [node name="MidTimer" type="Timer" parent="SpawnTimers"]
-wait_time = 5.0
+wait_time = 2.0
 one_shot = true
 
 [node name="LongTimer" type="Timer" parent="SpawnTimers"]
-wait_time = 10.0
+wait_time = 5.0
 one_shot = true
 
 [connection signal="changeSuspect" from="." to="UI/CanvasLayer" method="_on_main_game_change_suspect"]

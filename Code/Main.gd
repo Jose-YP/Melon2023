@@ -26,31 +26,34 @@ func _ready():
 	for character in get_tree().get_nodes_in_group("Character"): #Will have both characters and lovers
 		if character.assignedType == character.type.LOVER:
 			currentLovers += 1
-		
+
 		character.assignedMove = character.move.WANDER
 		characterArray.append(character)
 		character.connect("left",on_despawn)
 		currentCharacters += 1
-	
+
 	for lover in get_tree().get_nodes_in_group("Lover"): #Will only have lovers
 		lover.connect("convinced",_on_lover_convinced)
 		getLoverCrush(lover)
-	
+
 	for timer in spawnTimers:
 		timer.set_paused(false)
 		timer.set_autostart(false)
 		timer.connect("timeout",on_spawnTimer_timeout)
+	
+	$SpawnLocations/RightSpawn.global_position = Vector2(-100,520)
+	$SpawnLocations/LeftSpawn.global_position = Vector2(1200,520)
 
 func _process(_delta):
 	if player.whispering:
 		player.position = player.meleeFocus.whisperArea.global_position
-	
+
 	if startedSpawning:
 		var atLeastOne = false
 		for timer in spawnTimers:
 			if not timer.is_stopped():
 				atLeastOne = true
-		
+
 		if not atLeastOne:
 			spawnTimers[randi_range(0,2)].start()
 
@@ -61,7 +64,7 @@ func spawnCharacter(face, location):
 	var loverChance = false
 	if (currentLovers == 0 or randi_range(0,3) == 1) and currentCharacters > 0:
 		loverChance = true
-	
+
 	if currentLovers < maxLovers and loverChance:
 		spawnCharaMini(face, location, LoverScene)
 	else:
@@ -75,10 +78,10 @@ func spawnCharaMini(face, location,scenetype):
 	if face == 1:
 		CharNew.facing = -1
 		CharNew.scale.x *= -1
-	
+
 	characterArray.append(CharNew)
 	currentCharacters += 1
-	
+
 	if scenetype == characterScene:
 		$Characters.add_child(CharNew)
 	else:
@@ -87,18 +90,18 @@ func spawnCharaMini(face, location,scenetype):
 		currentLovers += 1
 		getLoverCrush(CharNew)
 	
-	print(CharNew.global_position)
+	print(CharNew, "was spawned at", CharNew.global_position, "with", location)
 
 func loverConfidence(body,crush):
 	var distance = crush.global_position.x - body.global_position.x
-	
+
 	if not body.moving and abs(distance) > 150:
 		body.assignedMove = body.move.LOVER
 		crush.assignedMove = body.move.LOVER
 		if crush.moving:
 			crush.currentTween.kill()
 			crush.moving = false
-		
+
 		if distance * body.facing <= 0: #If they're facing away from distance
 			print("Facing different directions", distance, body.scale.x)
 			body.scale.x *= -1
@@ -106,21 +109,21 @@ func loverConfidence(body,crush):
 		else:#If they're facing towards from distance
 			print("Facing same directions", distance, body.scale.x)
 			body.movement(-1 * distance)
-		
+
 		body.inLove = true
 		crush.inLove = true
-	
+
 	elif abs(distance) <= 150:
 		if body.moving:
 			body.currentTween.kill()
 			body.moving = false
-		
+
 		#Make sure both parties face the same side
 		if crush.scale.x != body.scale.x:
 			print("Different Directions")
 			crush.scale.x *= -1
 			crush.facing *= -1
-		
+
 		body.assignedMove = body.move.LEAVE
 		crush.assignedMove = body.move.LEAVE
 
@@ -133,7 +136,6 @@ func riseLimits(character,lover = false):
 #----------------------------------------------
 #FAIL STATE
 #----------------------------------------------
-
 func spotted():
 	pass
 
@@ -145,18 +147,16 @@ func fail():
 #----------------------------------------------
 func getLoverCrush(currentLover):
 	var tempCrush = characterArray[randi_range(0,characterArray.size() - 1)] #For now brute force it
-	
+
 	while(tempCrush.crushedOn == false):
 		if tempCrush.crushedOn == false and tempCrush != currentLover: #No narcicists
 			currentLover.crush = tempCrush
 			tempCrush.crushedOn = true
 			break
-		
+
 		else:
-			print("Hit")
-			tempCrush.crushedOn = false
-			tempCrush = characterArray[randi_range(0,characterArray.size() - 1)] 
-	
+			tempCrush = characterArray[randi_range(0,characterArray.size() - 1)]
+
 	print(currentLover, "Crush: ",currentLover.crush)
 
 func spottedCalc():
@@ -171,17 +171,17 @@ func _on_player_shoot_arrow(arrow,aim):
 	#Move arrow to projectiles so it won't be affected by player anymore
 	arrow.get_parent().remove_child(arrow)
 	$Projectiles.add_child(arrow)
-	
+
 	#Add back it's position, and rotation
 	arrow.global_position = player.bow.global_position
 	arrow.look_at(aim)
-	
+
 	#Get arrow velocity and shoot
 	var arrowRotation = arrow.rotation
 	var rotationVector = Vector2(cos(arrowRotation),sin(arrowRotation)) * -1
 	arrow.linear_velocity = rotationVector * player.bowDistance
 	arrow.apply_central_force(arrow.linear_velocity)
-	
+
 	#Reset player things
 	player.bow.hide()
 	var resetTween = player.create_tween().bind_node(player)
@@ -208,20 +208,19 @@ func _on_canvas_layer_start_spawning():
 func on_despawn(body):
 	currentCharacters -= 1
 	characterArray.erase(body)
-	
+
 	if body.assignedType == body.type.LOVER:
 		currentLovers -= 1
-	
+
 	if body.inLove:
 		riseScore.emit()
 	else:
 		pass
 
 func on_spawnTimer_timeout():
-	print("Spawning time")
 	if currentCharacters < maxCharacters:
 		var face = randi_range(0,1)
 		var marker = spawnArray[face]
-		
+		print(marker,"'s Global Position",marker.global_position)
 		spawnCharacter(face, marker.global_position)
-		print(currentCharacters, "vs. ", maxCharacters)
+		#print(currentCharacters, "vs. ", maxCharacters)

@@ -40,6 +40,8 @@ func moreReady(): #Lover will inherit from Character so moreReady can be called 
 		timer.set_paused(false)
 		timer.set_autostart(false)
 		timer.connect("timeout",on_idleTimer_timeout)
+	
+	global_position.y = 520
 
 #----------------------------------------------
 #PROCESSING
@@ -79,7 +81,7 @@ func processor(): #The same applies to processor and process
 			await spawnMovement(randi_range(400,600))
 			print(assignedMove)
 			
-			if global_position.x > -300 and global_position.x < 900:
+			if global_position.x > 0 and global_position.x < 700:
 				print(global_position)
 				print("Wandering again")
 				assignedMove = move.WANDER
@@ -128,9 +130,9 @@ func spawnMovement(distance):
 	currentTween = moveTween
 	moveTween.connect("finished",on_movementTween_finished)
 	
-	print(finalPos)
-	moveTween.tween_property($".","global_position",Vector2(distance,528),abs(distance)/(tweenSpeed * 1.5))
-	print(global_position)
+	print("final Position: ",finalPos)
+	moveTween.tween_property($".","global_position",Vector2(distance,520),abs(distance)/(tweenSpeed * 1.5)).from_current()
+	print("Current Global Position: ", global_position)
 
 #----------------------------------------------
 #OBSERVING AI
