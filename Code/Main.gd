@@ -23,26 +23,16 @@ var startedSpawning: bool = false
 #INITALIZATION
 #----------------------------------------------
 func _ready():
-	for character in get_tree().get_nodes_in_group("Character"): #Will have both characters and lovers
-		if character.assignedType == character.type.LOVER:
-			currentLovers += 1
-
-		character.assignedMove = character.move.WANDER
-		characterArray.append(character)
-		character.connect("left",on_despawn)
-		currentCharacters += 1
-
-	for lover in get_tree().get_nodes_in_group("Lover"): #Will only have lovers
-		lover.connect("convinced",_on_lover_convinced)
-		getLoverCrush(lover)
+	while currentCharacters != maxCharacters:
+		on_spawnTimer_timeout()
 
 	for timer in spawnTimers:
 		timer.set_paused(false)
 		timer.set_autostart(false)
 		timer.connect("timeout",on_spawnTimer_timeout)
 	
-	$SpawnLocations/RightSpawn.global_position = Vector2(-100,520)
-	$SpawnLocations/LeftSpawn.global_position = Vector2(1200,520)
+	$SpawnLocations/RightSpawn.global_position = Vector2(1200,520)
+	$SpawnLocations/LeftSpawn.global_position = Vector2(-200,520)
 
 func _process(_delta):
 	if player.whispering:
@@ -77,7 +67,7 @@ func spawnCharaMini(face, location,scenetype):
 	CharNew.global_position = location
 	CharNew.assignedMove = CharNew.move.SPAWN
 	CharNew.connect("left",on_despawn)
-	if face == 1:
+	if face == 0:
 		CharNew.facing = -1
 		CharNew.scale.x *= -1
 
@@ -96,6 +86,7 @@ func loverConfidence(body,crush):
 	var distance = crush.global_position.x - body.global_position.x
 
 	if not body.moving and abs(distance) > 150:
+		print(body.name, "is persuing", crush.name, "Who is in", crush.global_position, "which is ", distance)
 		body.assignedMove = body.move.LOVER
 		crush.assignedMove = body.move.LOVER
 		if crush.moving:
@@ -110,9 +101,6 @@ func loverConfidence(body,crush):
 			print("Facing same directions", distance, body.scale.x)
 			body.movement(-1 * distance)
 
-		body.inLove = true
-		crush.inLove = true
-
 	elif abs(distance) <= 150:
 		if body.moving:
 			body.currentTween.kill()
@@ -121,9 +109,11 @@ func loverConfidence(body,crush):
 		#Make sure both parties face the same side
 		if crush.scale.x != body.scale.x:
 			print("Different Directions")
-			crush.scale.x *= -1
-			crush.facing *= -1
-
+			body.scale.x *= -1
+			body.facing *= -1
+		
+		body.inLove = true
+		crush.inLove = true
 		body.assignedMove = body.move.LEAVE
 		crush.assignedMove = body.move.LEAVE
 
@@ -211,7 +201,8 @@ func on_despawn(body):
 
 	if body.assignedType == body.type.LOVER:
 		currentLovers -= 1
-
+	
+	print("Score point? ", body.inLove)
 	if body.inLove:
 		riseScore.emit()
 	else:

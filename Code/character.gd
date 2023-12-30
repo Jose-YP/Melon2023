@@ -67,8 +67,10 @@ func processor(): #The same applies to processor and process
 			
 			#Ducttape to keep characters inside screen
 			if global_position.x < 0:
+				print("Oh no")
 				global_position.x = 0
 			elif global_position.x > 1100:
+				print("Oops")
 				global_position.x = 1100
 				
 			
@@ -88,7 +90,6 @@ func processor(): #The same applies to processor and process
 			await spawnMovement(randi_range(400,600))
 			
 			if global_position.x > 0 and global_position.x < 700:
-				print(global_position)
 				print("Wandering again")
 				assignedMove = move.WANDER
 				moving = false
@@ -131,7 +132,7 @@ func spawnMovement(distance):
 	var moveTween = get_tree().create_tween().bind_node(self)
 	currentTween = moveTween
 	moveTween.connect("finished",on_movementTween_finished)
-	
+	print("Currently: ", global_position, "Destination: ", Vector2(distance,520))
 	moveTween.tween_property($".","global_position",Vector2(distance,520),abs(distance)/(tweenSpeed * 1.5)).from_current()
 
 #----------------------------------------------
@@ -154,6 +155,7 @@ func activeSkyObserve():
 #----------------------------------------------
 func despawn():#Will have other stuff to determine what should be done before they despawn
 	left.emit(self)
+	print("Despawn?")
 	queue_free()
 
 #----------------------------------------------

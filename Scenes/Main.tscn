@@ -30,14 +30,8 @@ metadata/_edit_lock_ = true
 
 [node name="Lovers" type="Node2D" parent="."]
 
-[node name="TestLover" parent="Lovers" instance=ExtResource("3_sb2b3")]
-position = Vector2(984, 520)
-
 [node name="Characters" type="Node2D" parent="."]
 position = Vector2(348, 214)
-
-[node name="TestCharacter" parent="Characters" instance=ExtResource("2_36bu7")]
-position = Vector2(-262, 310)
 
 [node name="Player" parent="." instance=ExtResource("2_ssk07")]
 position = Vector2(348, 214)
