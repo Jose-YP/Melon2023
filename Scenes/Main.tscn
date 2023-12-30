@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cyou4j3uw6fhw"]
+[gd_scene load_steps=12 format=3 uid="uid://cyou4j3uw6fhw"]
 
 [ext_resource type="Script" path="res://Code/Main.gd" id="1_v2ock"]
 [ext_resource type="PackedScene" uid="uid://26yvoiikd1pl" path="res://Scenes/character.tscn" id="2_36bu7"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://dpgn1fr0s7wmq" path="res://Scenes/lover.tscn" id="3_sb2b3"]
 [ext_resource type="PackedScene" uid="uid://nag7h0gar684" path="res://Scenes/Background.tscn" id="5_ck750"]
 [ext_resource type="PackedScene" uid="uid://c7joll78nh307" path="res://Scenes/UI.tscn" id="5_pdl6b"]
+[ext_resource type="Texture2D" uid="uid://mlrgvhwo1u0e" path="res://Assets/Sign.png" id="6_0bs4t"]
 [ext_resource type="PackedScene" uid="uid://dguovfu7q45yb" path="res://Scenes/player_bounds.tscn" id="7_s18jr"]
+[ext_resource type="AudioStream" uid="uid://6o85qnteb6l5" path="res://Assets/C_H_A_R_M..wav" id="8_4yxb4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_73ha5"]
 size = Vector2(1170, 226)
@@ -39,27 +41,14 @@ scale = Vector2(0.45, 0.45)
 
 [node name="Projectiles" type="Node2D" parent="."]
 
-[node name="Boundaries" type="Node2D" parent="."]
-position = Vector2(348, 214)
-metadata/_edit_lock_ = true
-
-[node name="BackgroundObject" parent="Boundaries" instance=ExtResource("5_ck750")]
-position = Vector2(206, 411)
-
-[node name="PlayerBounds" parent="Boundaries" instance=ExtResource("7_s18jr")]
-position = Vector2(-371, 103)
-
-[node name="PlayerBounds2" parent="Boundaries" instance=ExtResource("7_s18jr")]
-position = Vector2(827, 127)
-
-[node name="PlayerBounds3" parent="Boundaries" instance=ExtResource("7_s18jr")]
-position = Vector2(210, -239)
-rotation = 1.5708
-scale = Vector2(1, 1.5)
-
 [node name="Locations" type="Node2D" parent="."]
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
+
+[node name="Sign" type="Sprite2D" parent="Locations"]
+position = Vector2(360, 456)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("6_0bs4t")
 
 [node name="HoverArea" type="Area2D" parent="Locations"]
 collision_layer = 2
@@ -78,6 +67,24 @@ collision_mask = 2
 position = Vector2(602.5, 179)
 shape = SubResource("RectangleShape2D_6futi")
 debug_color = Color(0, 0.6, 0, 0.180392)
+
+[node name="Boundaries" type="Node2D" parent="."]
+position = Vector2(348, 214)
+metadata/_edit_lock_ = true
+
+[node name="BackgroundObject" parent="Boundaries" instance=ExtResource("5_ck750")]
+position = Vector2(206, 411)
+
+[node name="PlayerBounds" parent="Boundaries" instance=ExtResource("7_s18jr")]
+position = Vector2(-371, 103)
+
+[node name="PlayerBounds2" parent="Boundaries" instance=ExtResource("7_s18jr")]
+position = Vector2(827, 127)
+
+[node name="PlayerBounds3" parent="Boundaries" instance=ExtResource("7_s18jr")]
+position = Vector2(210, -239)
+rotation = 1.5708
+scale = Vector2(1, 1.5)
 
 [node name="SpawnLocations" type="Node2D" parent="."]
 
@@ -99,6 +106,9 @@ one_shot = true
 [node name="LongTimer" type="Timer" parent="SpawnTimers"]
 wait_time = 5.0
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_4yxb4")
 
 [connection signal="changeSuspect" from="." to="UI/CanvasLayer" method="_on_main_game_change_suspect"]
 [connection signal="riseScore" from="." to="UI/CanvasLayer" method="_on_main_game_rise_score"]

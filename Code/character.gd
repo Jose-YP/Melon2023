@@ -1,6 +1,8 @@
 extends StaticBody2D
 
-@onready var sprite: Sprite2D = $Icon
+@onready var sprite: Node2D = $TotalSprite
+@onready var bodySprite: AnimatedSprite2D = $TotalSprite/Body
+@onready var headSprite: Sprite2D = $TotalSprite/Head
 @onready var wanderArrays: Array[RayCast2D] = [$WanderRays/Forward,$WanderRays/Back]
 @onready var idleTimers: Array[Timer] = [$IdleTimers/ShortIdle,$IdleTimers/MidIdle,$IdleTimers/LongIdle]
 
@@ -99,6 +101,11 @@ func processor(): #The same applies to processor and process
 				print("Wandering again")
 				assignedMove = move.WANDER
 				moving = false
+	
+	if moving: #animate movement
+		bodySprite.play("default")
+	else:
+		bodySprite.stop()
 
 #----------------------------------------------
 #MOVING AI

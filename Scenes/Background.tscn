@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://nag7h0gar684"]
 
-[ext_resource type="Texture2D" uid="uid://demmdpdkaxemx" path="res://Assets/icon.svg" id="1_4vd42"]
+[ext_resource type="Texture2D" uid="uid://doxaw30ilo7xw" path="res://Assets/ground.png" id="1_4g5yy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ow6nc"]
 size = Vector2(1479, 90)
@@ -20,8 +20,8 @@ shape = SubResource("RectangleShape2D_ow6nc")
 debug_color = Color(0.952941, 0.0196078, 0.556863, 0.419608)
 
 [node name="Icon" type="Sprite2D" parent="."]
-scale = Vector2(11.2344, 0.554688)
-texture = ExtResource("1_4vd42")
+position = Vector2(12, 72)
+texture = ExtResource("1_4g5yy")
 
 [node name="Placeholder" type="CollisionShape2D" parent="."]
 position = Vector2(3, -1)

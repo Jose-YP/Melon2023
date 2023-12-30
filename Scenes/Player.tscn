@@ -1,15 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://b6sosotfcatui"]
+[gd_scene load_steps=10 format=3 uid="uid://b6sosotfcatui"]
 
-[ext_resource type="Texture2D" uid="uid://demmdpdkaxemx" path="res://Assets/icon.svg" id="1_i67so"]
 [ext_resource type="Script" path="res://Code/Player.gd" id="1_pcrn1"]
 [ext_resource type="PackedScene" uid="uid://xxkvaoecflv4" path="res://Scenes/arrow.tscn" id="2_1vbe6"]
 [ext_resource type="PackedScene" uid="uid://l48k2ubbfvy4" path="res://Scenes/trap.tscn" id="3_dtcct"]
+[ext_resource type="Texture2D" uid="uid://na2bdvnpyxk8" path="res://Assets/wings1.png" id="4_wp6ac"]
+[ext_resource type="Texture2D" uid="uid://drvc3ly3r82oi" path="res://Assets/headPlayer.png" id="5_830b7"]
+[ext_resource type="Texture2D" uid="uid://bo38quj3hiiao" path="res://Assets/eyes1.png" id="6_5bwuy"]
+[ext_resource type="Texture2D" uid="uid://dc6wqa8h8siag" path="res://Assets/bow.png" id="7_ix10x"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6xev0"]
-size = Vector2(117, 119)
+[sub_resource type="CircleShape2D" id="CircleShape2D_nbkb6"]
+radius = 67.041
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hy7cw"]
-size = Vector2(215, 196)
+[sub_resource type="CircleShape2D" id="CircleShape2D_2rbpl"]
+radius = 120.104
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -20,21 +23,33 @@ bowDistance = 500
 arrow = ExtResource("2_1vbe6")
 trap = ExtResource("3_dtcct")
 
-[node name="Character" type="Sprite2D" parent="."]
+[node name="FullSprite" type="Node2D" parent="."]
 position = Vector2(2, -1)
-texture = ExtResource("1_i67so")
+scale = Vector2(0.2, 0.2)
+
+[node name="Wings1" type="Sprite2D" parent="FullSprite"]
+position = Vector2(55, 35)
+texture = ExtResource("4_wp6ac")
+
+[node name="Character" type="Sprite2D" parent="FullSprite"]
+texture = ExtResource("5_830b7")
+
+[node name="Eyes1" type="Sprite2D" parent="FullSprite"]
+position = Vector2(5, 70)
+scale = Vector2(1, 1)
+texture = ExtResource("6_5bwuy")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(2.5, -0.5)
-shape = SubResource("RectangleShape2D_6xev0")
+shape = SubResource("CircleShape2D_nbkb6")
 
 [node name="RangedTools" type="Node2D" parent="."]
 
 [node name="Bow" type="Sprite2D" parent="RangedTools"]
 visible = false
 position = Vector2(122, 0)
-scale = Vector2(0.1, 1)
-texture = ExtResource("1_i67so")
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("7_ix10x")
 
 [node name="BowCooldown" type="Timer" parent="RangedTools"]
 one_shot = true
@@ -46,7 +61,7 @@ collision_layer = 8
 collision_mask = 24
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeTools/MeleeRange"]
-shape = SubResource("RectangleShape2D_hy7cw")
+shape = SubResource("CircleShape2D_2rbpl")
 debug_color = Color(0.866667, 0.352941, 0, 0.419608)
 
 [node name="InvisTimer" type="Timer" parent="MeleeTools"]

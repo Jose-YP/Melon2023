@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://xxkvaoecflv4"]
 
 [ext_resource type="Script" path="res://Code/arrow.gd" id="1_o5cxo"]
-[ext_resource type="Texture2D" uid="uid://demmdpdkaxemx" path="res://Assets/icon.svg" id="1_xyo3o"]
+[ext_resource type="Texture2D" uid="uid://w0qje1mur5th" path="res://Assets/arrow.png" id="2_1qmcu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8j0wl"]
 size = Vector2(10, 13)
@@ -15,8 +15,9 @@ gravity_scale = 0.01
 script = ExtResource("1_o5cxo")
 
 [node name="Icon" type="Sprite2D" parent="."]
-scale = Vector2(0.502347, 0.156967)
-texture = ExtResource("1_xyo3o")
+position = Vector2(11, 2)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_1qmcu")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(22, 0)
