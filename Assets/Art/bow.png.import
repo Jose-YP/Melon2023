@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cerutk4yetwtk"
-path="res://.godot/imported/headChara.png-71e5ef11a0c3a3892f61262c5424cbce.ctex"
+uid="uid://dc6wqa8h8siag"
+path="res://.godot/imported/bow.png-5134b61fba6b97fee8fcdb04470f993b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/headChara.png"
-dest_files=["res://.godot/imported/headChara.png-71e5ef11a0c3a3892f61262c5424cbce.ctex"]
+source_file="res://Assets/Art/bow.png"
+dest_files=["res://.godot/imported/bow.png-5134b61fba6b97fee8fcdb04470f993b.ctex"]
 
 [params]
 

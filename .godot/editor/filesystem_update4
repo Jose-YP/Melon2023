@@ -1,8 +1,7 @@
-res://Scenes/Main.tscn
-res://Resources/outline.gdshader
-res://Code/character.gd
-res://Scenes/character.tscn
-res://Scenes/Background.tscn
-res://Scenes/arrow.tscn
 res://Scenes/Player.tscn
-res://Scenes/lover.tscn
+res://Resources/outline.gdshader
+res://Code/arrow.gd
+res://Code/Main.gd
+res://Code/Player.gd
+res://Code/UI.gd
+res://Scenes/Main.tscn

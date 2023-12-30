@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://dpgn1fr0s7wmq" path="res://Scenes/lover.tscn" id="3_sb2b3"]
 [ext_resource type="PackedScene" uid="uid://nag7h0gar684" path="res://Scenes/Background.tscn" id="5_ck750"]
 [ext_resource type="PackedScene" uid="uid://c7joll78nh307" path="res://Scenes/UI.tscn" id="5_pdl6b"]
-[ext_resource type="Texture2D" uid="uid://mlrgvhwo1u0e" path="res://Assets/Sign.png" id="6_0bs4t"]
+[ext_resource type="Texture2D" uid="uid://mlrgvhwo1u0e" path="res://Assets/Art/Sign.png" id="6_0bs4t"]
 [ext_resource type="PackedScene" uid="uid://dguovfu7q45yb" path="res://Scenes/player_bounds.tscn" id="7_s18jr"]
-[ext_resource type="AudioStream" uid="uid://6o85qnteb6l5" path="res://Assets/C_H_A_R_M..wav" id="8_4yxb4"]
+[ext_resource type="AudioStream" uid="uid://6o85qnteb6l5" path="res://Assets/Audio/C_H_A_R_M..wav" id="8_4yxb4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_73ha5"]
 size = Vector2(1170, 226)
@@ -112,6 +112,7 @@ stream = ExtResource("8_4yxb4")
 
 [connection signal="changeSuspect" from="." to="UI/CanvasLayer" method="_on_main_game_change_suspect"]
 [connection signal="riseScore" from="." to="UI/CanvasLayer" method="_on_main_game_rise_score"]
+[connection signal="riseCap" from="UI/CanvasLayer" to="." method="_on_canvas_layer_rise_cap"]
 [connection signal="startSpawning" from="UI/CanvasLayer" to="." method="_on_canvas_layer_start_spawning"]
 [connection signal="shootArrow" from="Player" to="." method="_on_player_shoot_arrow"]
 [connection signal="whisper" from="Player" to="." method="_on_player_whisper"]

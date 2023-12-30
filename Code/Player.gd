@@ -10,6 +10,7 @@ extends CharacterBody2D
 @onready var bow: Sprite2D = $RangedTools/Bow
 @onready var bowCooldown: Timer = $RangedTools/BowCooldown
 @onready var meleeInvisTime: Timer = $MeleeTools/InvisTimer
+@onready var meleeSFX: Array[AudioStreamPlayer] = [$MeleeTools/MeleeSound1,$MeleeTools/MeleeSound2]
 
 signal shootArrow(arrow, aim)
 signal whisper(target)
@@ -150,6 +151,9 @@ func getPlayerModifiers():
 			methodMod = 2
 	
 	return locationMod + methodMod
+
+func meleeComplete():
+	meleeSFX[randi_range(0,1)].play()
 
 #----------------------------------------------
 #SIGNALS

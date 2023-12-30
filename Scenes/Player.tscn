@@ -1,12 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://b6sosotfcatui"]
+[gd_scene load_steps=12 format=3 uid="uid://b6sosotfcatui"]
 
 [ext_resource type="Script" path="res://Code/Player.gd" id="1_pcrn1"]
 [ext_resource type="PackedScene" uid="uid://xxkvaoecflv4" path="res://Scenes/arrow.tscn" id="2_1vbe6"]
 [ext_resource type="PackedScene" uid="uid://l48k2ubbfvy4" path="res://Scenes/trap.tscn" id="3_dtcct"]
-[ext_resource type="Texture2D" uid="uid://na2bdvnpyxk8" path="res://Assets/wings1.png" id="4_wp6ac"]
-[ext_resource type="Texture2D" uid="uid://drvc3ly3r82oi" path="res://Assets/headPlayer.png" id="5_830b7"]
-[ext_resource type="Texture2D" uid="uid://bo38quj3hiiao" path="res://Assets/eyes1.png" id="6_5bwuy"]
-[ext_resource type="Texture2D" uid="uid://dc6wqa8h8siag" path="res://Assets/bow.png" id="7_ix10x"]
+[ext_resource type="Texture2D" uid="uid://na2bdvnpyxk8" path="res://Assets/Art/wings1.png" id="4_bgt8g"]
+[ext_resource type="Texture2D" uid="uid://drvc3ly3r82oi" path="res://Assets/Art/headPlayer.png" id="5_avf3h"]
+[ext_resource type="Texture2D" uid="uid://bo38quj3hiiao" path="res://Assets/Art/eyes1.png" id="6_aj7kx"]
+[ext_resource type="Texture2D" uid="uid://dc6wqa8h8siag" path="res://Assets/Art/bow.png" id="7_vdbwr"]
+[ext_resource type="AudioStream" uid="uid://cewt7jq213m2v" path="res://Assets/Audio/Melee1.wav" id="8_nvclk"]
+[ext_resource type="AudioStream" uid="uid://bdt684p3tudt6" path="res://Assets/Audio/Melee2.wav" id="9_5hrrm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nbkb6"]
 radius = 67.041
@@ -29,15 +31,14 @@ scale = Vector2(0.2, 0.2)
 
 [node name="Wings1" type="Sprite2D" parent="FullSprite"]
 position = Vector2(55, 35)
-texture = ExtResource("4_wp6ac")
+texture = ExtResource("4_bgt8g")
 
 [node name="Character" type="Sprite2D" parent="FullSprite"]
-texture = ExtResource("5_830b7")
+texture = ExtResource("5_avf3h")
 
 [node name="Eyes1" type="Sprite2D" parent="FullSprite"]
 position = Vector2(5, 70)
-scale = Vector2(1, 1)
-texture = ExtResource("6_5bwuy")
+texture = ExtResource("6_aj7kx")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(2.5, -0.5)
@@ -49,7 +50,7 @@ shape = SubResource("CircleShape2D_nbkb6")
 visible = false
 position = Vector2(122, 0)
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("7_ix10x")
+texture = ExtResource("7_vdbwr")
 
 [node name="BowCooldown" type="Timer" parent="RangedTools"]
 one_shot = true
@@ -67,6 +68,12 @@ debug_color = Color(0.866667, 0.352941, 0, 0.419608)
 [node name="InvisTimer" type="Timer" parent="MeleeTools"]
 wait_time = 2.0
 one_shot = true
+
+[node name="MeleeSound1" type="AudioStreamPlayer" parent="MeleeTools"]
+stream = ExtResource("8_nvclk")
+
+[node name="MeleeSound2" type="AudioStreamPlayer" parent="MeleeTools"]
+stream = ExtResource("9_5hrrm")
 
 [node name="TrapTools" type="Node2D" parent="."]
 

@@ -1,6 +1,6 @@
 extends Node2D
 
-@export_range(2,6) var maxCharacters: int = 2
+@export_range(2,7) var maxCharacters: int = 3
 @export_range(1,2) var maxLovers: int = 1
 @export var characterScene: PackedScene
 @export var LoverScene: PackedScene
@@ -171,7 +171,8 @@ func _on_player_shoot_arrow(arrow,aim):
 	var rotationVector = Vector2(cos(arrowRotation),sin(arrowRotation)) * -1
 	arrow.linear_velocity = rotationVector * player.bowDistance
 	arrow.apply_central_force(arrow.linear_velocity)
-
+	arrow.sound()
+	
 	#Reset player things
 	player.bow.hide()
 	var resetTween = player.create_tween().bind_node(player)
@@ -188,6 +189,7 @@ func _on_lover_convinced(body,crush):
 		body.currentTween.kill()
 		body.moving = false
 	
+	player.meleeCompleted()
 	loverConfidence(body,crush)
 
 func _on_hover_area_area_entered(_area):
@@ -217,3 +219,9 @@ func on_spawnTimer_timeout():
 		var face = randi_range(0,1)
 		var marker = spawnArray[face]
 		spawnCharacter(face, marker.global_position)
+
+func _on_canvas_layer_rise_cap():
+	var riseChar = maxCharacters != 7
+	var risePlayer = maxCharacters%2 == 0
+	
+	riseLimits(riseChar,risePlayer)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mlrgvhwo1u0e"
-path="res://.godot/imported/Sign.png-6900ec36eeeec7d96aada7e693625975.ctex"
+uid="uid://drvc3ly3r82oi"
+path="res://.godot/imported/headPlayer.png-3a24e73324582ec6e85ab046fee89596.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sign.png"
-dest_files=["res://.godot/imported/Sign.png-6900ec36eeeec7d96aada7e693625975.ctex"]
+source_file="res://Assets/Art/headPlayer.png"
+dest_files=["res://.godot/imported/headPlayer.png-3a24e73324582ec6e85ab046fee89596.ctex"]
 
 [params]
 

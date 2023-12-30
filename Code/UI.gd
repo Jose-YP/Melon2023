@@ -1,10 +1,12 @@
 extends CanvasLayer
 
+@onready var riseCapTime: Timer = $RiseCapTime
 @onready var time: Timer = $Timer
 @onready var timerText: RichTextLabel = $TimerText
 @onready var scoreText: RichTextLabel = $ScoreText
 @onready var suspectBar: TextureProgressBar = $SuspicionBar
 
+signal riseCap
 signal startSpawning
 
 var totalTime: int = 0
@@ -15,9 +17,7 @@ var totalScore: int = 0
 #----------------------------------------------
 func _ready():
 	time.set_paused(false)
-
-func _process(_delta):
-	pass
+	riseCapTime.set_paused(false)
 
 #----------------------------------------------
 #UPDATE FUNCTIONS
@@ -54,3 +54,6 @@ func _on_main_game_rise_score():
 func _on_main_game_change_suspect(ammount):
 	suspectBar.value += ammount
 	tweenSuspectBar()
+
+func _on_rise_cap_time_timeout():
+	riseCap.emit()

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://na2bdvnpyxk8"
-path="res://.godot/imported/wings1.png-e74e205a6605972a259ea1db2f010ade.ctex"
+uid="uid://bo38quj3hiiao"
+path="res://.godot/imported/eyes1.png-0b6a43707a82787e589feb9640b79dc8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/wings1.png"
-dest_files=["res://.godot/imported/wings1.png-e74e205a6605972a259ea1db2f010ade.ctex"]
+source_file="res://Assets/Art/eyes1.png"
+dest_files=["res://.godot/imported/eyes1.png-0b6a43707a82787e589feb9640b79dc8.ctex"]
 
 [params]
 

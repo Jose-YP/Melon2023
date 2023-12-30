@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 @onready var arrowTime: Timer = $Timer
+@onready var arrowSFX: Array[AudioStreamPlayer] = [$SoundEffects/Range1,$SoundEffects/Range2]
 
 signal struckLover(body)
 
@@ -31,6 +32,9 @@ func stick():
 	vanishTween.connect("finished",_on_vanish_timeout)
 	
 	vanishTween.tween_property($".","modulate",Color.TRANSPARENT,.75)
+
+func sound():
+	arrowSFX[randi_range(0,1)].play()
 
 #----------------------------------------------
 #SIGNALS

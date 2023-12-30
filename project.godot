@@ -14,7 +14,7 @@ config/name="Melon2023"
 config/tags=PackedStringArray("gamejam", "made")
 run/main_scene="res://Scenes/Main.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
-config/icon="res://Assets/icon.svg"
+config/icon="res://Assets/Art/icon.svg"
 
 [input]
 

@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://Code/character.gd" id="1_8yxad"]
 [ext_resource type="Shader" path="res://Resources/outline.gdshader" id="2_m7hrm"]
-[ext_resource type="Texture2D" uid="uid://cbysmiu6b17k2" path="res://Assets/body1.png" id="3_45btm"]
-[ext_resource type="Texture2D" uid="uid://cvq0l1laup087" path="res://Assets/body2.png" id="4_3ssxc"]
-[ext_resource type="Texture2D" uid="uid://cerutk4yetwtk" path="res://Assets/headChara.png" id="5_jo52x"]
-[ext_resource type="Texture2D" uid="uid://bo38quj3hiiao" path="res://Assets/eyes1.png" id="6_adxq8"]
+[ext_resource type="Texture2D" uid="uid://cbysmiu6b17k2" path="res://Assets/Art/body1.png" id="3_7r2uq"]
+[ext_resource type="Texture2D" uid="uid://cvq0l1laup087" path="res://Assets/Art/body2.png" id="4_fi8pw"]
+[ext_resource type="Texture2D" uid="uid://cerutk4yetwtk" path="res://Assets/Art/headChara.png" id="5_byjc2"]
+[ext_resource type="Texture2D" uid="uid://bo38quj3hiiao" path="res://Assets/Art/eyes1.png" id="6_y8so5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xa14c"]
 size = Vector2(74, 144)
@@ -19,10 +19,10 @@ shader_parameter/line_thickness = 1.0
 animations = [{
 "frames": [{
 "duration": 1.5,
-"texture": ExtResource("3_45btm")
+"texture": ExtResource("3_7r2uq")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_3ssxc")
+"texture": ExtResource("4_fi8pw")
 }],
 "loop": true,
 "name": &"default",
@@ -59,12 +59,11 @@ frame_progress = 0.588629
 [node name="Head" type="Sprite2D" parent="TotalSprite"]
 position = Vector2(0, -63)
 scale = Vector2(0.05, 0.05)
-texture = ExtResource("5_jo52x")
+texture = ExtResource("5_byjc2")
 
 [node name="Eyes1" type="Sprite2D" parent="TotalSprite/Head"]
 position = Vector2(100, 80.0002)
-scale = Vector2(1, 1)
-texture = ExtResource("6_adxq8")
+texture = ExtResource("6_y8so5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-3.5, -12)
