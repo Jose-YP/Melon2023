@@ -67,15 +67,17 @@ func processor(): #The same applies to processor and process
 					moving = false
 			
 			#Ducttape to keep characters inside screen
-			if global_position.x < 0:
+			if global_position.x < 5:
 				print("Oh no,",global_position, "global position will now be", 0)
-				global_position.x = 0
+				global_position.x = 10
 				currentTween.kill()
+				moving = false
 				
 			elif global_position.x > 1100:
 				print("Oops, global position will now be", global_position)
 				global_position.x = 1100
 				currentTween.kill()
+				moving = false
 				
 			
 		move.SEEK:#Unfinished
@@ -93,7 +95,7 @@ func processor(): #The same applies to processor and process
 		move.SPAWN:
 			await spawnMovement(randi_range(500,700))
 			
-			if global_position.x > 0 and global_position.x < 800:
+			if global_position.x > 100 and global_position.x < 800:
 				print("Wandering again")
 				assignedMove = move.WANDER
 				moving = false
@@ -124,7 +126,11 @@ func movement(distance):
 	var finalPos = global_position.x + distance
 	if assignedMove == move.WANDER:
 		if finalPos < 0:
+			print("FinalPos: ", finalPos)
 			finalPos = distance * -1
+			scale.x *= -1
+			facing *= -1
+			print("FinalPos: ", finalPos)
 	
 	print("Going to: ", finalPos, " Direction: ", facing)
 	print(name,":",global_position)

@@ -36,7 +36,7 @@ func _ready():
 
 func _process(_delta):
 	if player.whispering:
-		player.position = player.meleeFocus.whisperArea.global_position
+		player.global_position = player.meleeFocus.whisperArea.global_position
 
 	if startedSpawning:
 		var atLeastOne = false
@@ -137,16 +137,16 @@ func fail():
 #----------------------------------------------
 func getLoverCrush(currentLover):
 	var tempCrush = characterArray[randi_range(0,characterArray.size() - 1)] #For now brute force it
-
+	
 	while(tempCrush.crushedOn == false):
 		if tempCrush.crushedOn == false and tempCrush != currentLover: #No narcicists
 			currentLover.crush = tempCrush
 			tempCrush.crushedOn = true
 			break
-
+		
 		else:
 			tempCrush = characterArray[randi_range(0,characterArray.size() - 1)]
-
+	
 	print(currentLover, "Crush: ",currentLover.crush)
 
 func spottedCalc():
@@ -179,7 +179,7 @@ func _on_player_shoot_arrow(arrow,aim):
 
 func _on_player_whisper(target):
 	if target.canWhisper:
-		player.position = target.whisperArea.global_position
+		player.global_position = target.whisperArea.global_position
 		target.gettingWhispered = true
 
 func _on_lover_convinced(body,crush):
@@ -202,7 +202,7 @@ func _on_canvas_layer_start_spawning():
 func on_despawn(body):
 	currentCharacters -= 1
 	characterArray.erase(body)
-
+	
 	if body.assignedType == body.type.LOVER:
 		currentLovers -= 1
 	
