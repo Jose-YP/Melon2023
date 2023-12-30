@@ -61,17 +61,21 @@ func processor(): #The same applies to processor and process
 				if not atLeastOne:
 					idleTimers[randi_range(0,2)].start()
 			if moving:
-				if $WanderRays/Forward.is_colliding():
+				#print(global_position.x, currentTween)
+				if $WanderRays/Forward.is_colliding() or global_position.x < 0:
 					currentTween.kill()
 					moving = false
 			
 			#Ducttape to keep characters inside screen
 			if global_position.x < 0:
-				print("Oh no")
+				print("Oh no,",global_position, "global position will now be", 0)
 				global_position.x = 0
+				currentTween.kill()
+				
 			elif global_position.x > 1100:
-				print("Oops")
+				print("Oops, global position will now be", global_position)
 				global_position.x = 1100
+				currentTween.kill()
 				
 			
 		move.SEEK:#Unfinished
@@ -87,9 +91,9 @@ func processor(): #The same applies to processor and process
 				despawn()
 		
 		move.SPAWN:
-			await spawnMovement(randi_range(400,600))
+			await spawnMovement(randi_range(500,700))
 			
-			if global_position.x > 0 and global_position.x < 700:
+			if global_position.x > 0 and global_position.x < 800:
 				print("Wandering again")
 				assignedMove = move.WANDER
 				moving = false
@@ -116,14 +120,19 @@ func seek():
 func movement(distance):
 	distance *= facing
 	moving = true
-	#print("Making: ", moving, " Direction: ", facing)
-	var finalPos = position.x + distance
+	print(global_position.x)
+	var finalPos = global_position.x + distance
+	if assignedMove == move.WANDER:
+		if finalPos < 0:
+			finalPos = distance * -1
 	
+	print("Going to: ", finalPos, " Direction: ", facing)
+	print(name,":",global_position)
 	var moveTween = get_tree().create_tween().bind_node(self)
 	currentTween = moveTween
 	moveTween.connect("finished",on_movementTween_finished)
 	
-	moveTween.tween_property($".","position",Vector2(finalPos,position.y),abs(distance)/(tweenSpeed))
+	moveTween.tween_property($".","global_position",Vector2(finalPos,global_position.y),abs(distance)/(tweenSpeed))
 
 func spawnMovement(distance):
 	distance *= facing
@@ -132,7 +141,7 @@ func spawnMovement(distance):
 	var moveTween = get_tree().create_tween().bind_node(self)
 	currentTween = moveTween
 	moveTween.connect("finished",on_movementTween_finished)
-	print("Currently: ", global_position, "Destination: ", Vector2(distance,520))
+	#print("Currently: ", global_position, "Destination: ", Vector2(distance,520))
 	moveTween.tween_property($".","global_position",Vector2(distance,520),abs(distance)/(tweenSpeed * 1.5)).from_current()
 
 #----------------------------------------------
@@ -167,4 +176,3 @@ func on_idleTimer_timeout():
 
 func on_movementTween_finished():
 	moving = false
-	print(name,":",global_position)

@@ -51,13 +51,13 @@ one_shot = true
 modulate = Color(0, 0, 0, 1)
 
 [node name="Back" type="RayCast2D" parent="WanderRays"]
-position = Vector2(-40, 0)
-target_position = Vector2(-100, 0)
+position = Vector2(-12, 1)
+target_position = Vector2(-150, 0)
 collision_mask = 16
 collide_with_areas = true
 
 [node name="Forward" type="RayCast2D" parent="WanderRays"]
-position = Vector2(40, 0)
-target_position = Vector2(100, 0)
+position = Vector2(14, 0)
+target_position = Vector2(150, 0)
 collision_mask = 16
 collide_with_areas = true

@@ -84,9 +84,9 @@ func spawnCharaMini(face, location,scenetype):
 
 func loverConfidence(body,crush):
 	var distance = crush.global_position.x - body.global_position.x
-
+	
 	if not body.moving and abs(distance) > 150:
-		print(body.name, "is persuing", crush.name, "Who is in", crush.global_position, "which is ", distance)
+		print(body.name," who is in ", body.global_position," is persuing ", crush.name, " Who is in ", crush.global_position, " which is ", distance)
 		body.assignedMove = body.move.LOVER
 		crush.assignedMove = body.move.LOVER
 		if crush.moving:
@@ -184,6 +184,10 @@ func _on_player_whisper(target):
 
 func _on_lover_convinced(body,crush):
 	player.whispering = false
+	if body.moving:
+		body.currentTween.kill()
+		body.moving = false
+	
 	loverConfidence(body,crush)
 
 func _on_hover_area_area_entered(_area):
