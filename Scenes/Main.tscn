@@ -109,6 +109,7 @@ one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_4yxb4")
+autoplay = true
 
 [connection signal="changeSuspect" from="." to="UI/CanvasLayer" method="_on_main_game_change_suspect"]
 [connection signal="riseScore" from="." to="UI/CanvasLayer" method="_on_main_game_rise_score"]

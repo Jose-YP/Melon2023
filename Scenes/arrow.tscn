@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://xxkvaoecflv4"]
+[gd_scene load_steps=7 format=3 uid="uid://xxkvaoecflv4"]
 
 [ext_resource type="Script" path="res://Code/arrow.gd" id="1_o5cxo"]
 [ext_resource type="Texture2D" uid="uid://w0qje1mur5th" path="res://Assets/Art/arrow.png" id="2_ju6dm"]
+[ext_resource type="AudioStream" uid="uid://mlrurwtwib03" path="res://Assets/Audio/Range2.wav" id="3_gi2ay"]
+[ext_resource type="AudioStream" uid="uid://cmrtke8kaeo0u" path="res://Assets/Audio/Range1.wav" id="4_j42hm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8j0wl"]
 size = Vector2(10, 13)
@@ -33,6 +35,14 @@ debug_color = Color(0.952941, 0.0196078, 0.556863, 0.419608)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
+
+[node name="SoundEffects" type="Node" parent="."]
+
+[node name="Range2" type="AudioStreamPlayer" parent="SoundEffects"]
+stream = ExtResource("3_gi2ay")
+
+[node name="Range1" type="AudioStreamPlayer" parent="SoundEffects"]
+stream = ExtResource("4_j42hm")
 
 [connection signal="area_entered" from="StickArea" to="." method="_on_stick_area_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_vanish_timeout"]

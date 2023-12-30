@@ -5,3 +5,5 @@ res://Code/Main.gd
 res://Code/Player.gd
 res://Code/UI.gd
 res://Scenes/Main.tscn
+res://Scenes/UI.tscn
+res://Scenes/arrow.tscn
