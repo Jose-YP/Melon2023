@@ -9,10 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://dguovfu7q45yb" path="res://Scenes/player_bounds.tscn" id="7_s18jr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_73ha5"]
-size = Vector2(1170, 205)
+size = Vector2(1170, 226)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6futi"]
-size = Vector2(1225, 355)
+size = Vector2(1225, 378)
 
 [node name="MainGame" type="Node2D"]
 script = ExtResource("1_v2ock")
@@ -72,7 +72,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Locations/HoverArea"]
-position = Vector2(579, 505.5)
+position = Vector2(579, 495)
 shape = SubResource("RectangleShape2D_73ha5")
 debug_color = Color(0, 0.6, 0, 0.180392)
 
@@ -81,17 +81,17 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Locations/HighArea"]
-position = Vector2(602.5, 167.5)
+position = Vector2(602.5, 179)
 shape = SubResource("RectangleShape2D_6futi")
 debug_color = Color(0, 0.6, 0, 0.180392)
 
 [node name="SpawnLocations" type="Node2D" parent="."]
 
 [node name="RightSpawn" type="Marker2D" parent="SpawnLocations"]
-position = Vector2(1256, 520)
+position = Vector2(1256, 500)
 
 [node name="LeftSpawn" type="Marker2D" parent="SpawnLocations"]
-position = Vector2(-128, 528)
+position = Vector2(-128, 500)
 
 [node name="SpawnTimers" type="Node" parent="."]
 

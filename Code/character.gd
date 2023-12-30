@@ -40,8 +40,6 @@ func moreReady(): #Lover will inherit from Character so moreReady can be called 
 		timer.set_paused(false)
 		timer.set_autostart(false)
 		timer.connect("timeout",on_idleTimer_timeout)
-	
-	assignedMove = move.WANDER
 
 #----------------------------------------------
 #PROCESSING
@@ -73,15 +71,19 @@ func processor(): #The same applies to processor and process
 		
 		move.LEAVE:
 			await movement(1000)
+			
 			if global_position.x > 1300 or global_position.x < -500:
 				despawn()
 		
 		move.SPAWN:
-			await movement(randi_range(300,600))
-			moving = false
+			await spawnMovement(randi_range(400,600))
+			print(assignedMove)
+			
 			if global_position.x > -300 and global_position.x < 900:
-				currentTween.kill()
+				print(global_position)
+				print("Wandering again")
 				assignedMove = move.WANDER
+				moving = false
 		
 		move.LOVER:
 			pass
@@ -115,7 +117,20 @@ func movement(distance):
 	currentTween = moveTween
 	moveTween.connect("finished",on_movementTween_finished)
 	
-	moveTween.tween_property($".","position",Vector2(finalPos,position.y),abs(distance)/tweenSpeed)
+	moveTween.tween_property($".","position",Vector2(finalPos,position.y),abs(distance)/(tweenSpeed))
+
+func spawnMovement(distance):
+	distance *= facing
+	moving = true
+	
+	var finalPos = global_position.x + distance
+	var moveTween = get_tree().create_tween().bind_node(self)
+	currentTween = moveTween
+	moveTween.connect("finished",on_movementTween_finished)
+	
+	print(finalPos)
+	moveTween.tween_property($".","global_position",Vector2(distance,528),abs(distance)/(tweenSpeed * 1.5))
+	print(global_position)
 
 #----------------------------------------------
 #OBSERVING AI
@@ -136,7 +151,7 @@ func activeSkyObserve():
 #HELPER FUNTIONS
 #----------------------------------------------
 func despawn():#Will have other stuff to determine what should be done before they despawn
-	await left.emit(self)
+	left.emit(self)
 	queue_free()
 
 #----------------------------------------------
@@ -148,3 +163,4 @@ func on_idleTimer_timeout():
 
 func on_movementTween_finished():
 	moving = false
+	print(global_position)

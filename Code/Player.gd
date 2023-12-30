@@ -77,6 +77,7 @@ func basicMove(delta):
 		effectiveSpeed = speed * .25
 	
 	position += direction * effectiveSpeed * delta
+	print(global_position)
 	move_and_slide()
 
 #----------------------------------------------

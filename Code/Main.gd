@@ -27,6 +27,7 @@ func _ready():
 		if character.assignedType == character.type.LOVER:
 			currentLovers += 1
 		
+		character.assignedMove = character.move.WANDER
 		characterArray.append(character)
 		character.connect("left",on_despawn)
 		currentCharacters += 1
@@ -56,26 +57,37 @@ func _process(_delta):
 #----------------------------------------------
 #GAME LOOP
 #----------------------------------------------
-func spawnCharacter(location):
+func spawnCharacter(face, location):
 	var loverChance = false
-	if currentLovers == 0 or randi_range(0,3) == 1:
+	if (currentLovers == 0 or randi_range(0,3) == 1) and currentCharacters > 0:
 		loverChance = true
 	
 	if currentLovers < maxLovers and loverChance:
-		spawnCharaMini(location,LoverScene)
+		spawnCharaMini(face, location, LoverScene)
 	else:
-		spawnCharaMini(location,characterScene)
+		spawnCharaMini(face, location,characterScene)
 
-func spawnCharaMini(location,scenetype):
+func spawnCharaMini(face, location,scenetype):
 	var CharNew = scenetype.instantiate()
-	CharNew.position = location
+	CharNew.global_position = location
 	CharNew.assignedMove = CharNew.move.SPAWN
+	CharNew.connect("left",on_despawn)
+	if face == 1:
+		CharNew.facing = -1
+		CharNew.scale.x *= -1
+	
 	characterArray.append(CharNew)
+	currentCharacters += 1
 	
 	if scenetype == characterScene:
 		$Characters.add_child(CharNew)
 	else:
 		$Lovers.add_child(CharNew)
+		CharNew.connect("convinced",_on_lover_convinced)
+		currentLovers += 1
+		getLoverCrush(CharNew)
+	
+	print(CharNew.global_position)
 
 func loverConfidence(body,crush):
 	var distance = crush.global_position.x - body.global_position.x
@@ -132,7 +144,7 @@ func fail():
 #HELPER FUNCTIONS
 #----------------------------------------------
 func getLoverCrush(currentLover):
-	var tempCrush = characterArray[randi_range(0,characterArray.size())] #For now brute force it
+	var tempCrush = characterArray[randi_range(0,characterArray.size() - 1)] #For now brute force it
 	
 	while(tempCrush.crushedOn == false):
 		if tempCrush.crushedOn == false and tempCrush != currentLover: #No narcicists
@@ -143,7 +155,7 @@ func getLoverCrush(currentLover):
 		else:
 			print("Hit")
 			tempCrush.crushedOn = false
-			tempCrush = characterArray[randi_range(0,characterArray.size())] 
+			tempCrush = characterArray[randi_range(0,characterArray.size() - 1)] 
 	
 	print(currentLover, "Crush: ",currentLover.crush)
 
@@ -173,7 +185,7 @@ func _on_player_shoot_arrow(arrow,aim):
 	#Reset player things
 	player.bow.hide()
 	var resetTween = player.create_tween().bind_node(player)
-	resetTween.tween_property(player,"rotation",0,1).set_trans(Tween.TRANS_BOUNCE)
+	resetTween.tween_property(player,"rotation",0,1).set_trans(Tween.TRANS_ELASTIC)
 
 func _on_player_whisper(target):
 	if target.canWhisper:
@@ -207,7 +219,9 @@ func on_despawn(body):
 
 func on_spawnTimer_timeout():
 	print("Spawning time")
-	print(currentCharacters, "vs. ", maxCharacters)
 	if currentCharacters < maxCharacters:
-		var marker = spawnArray[randi_range(0,1)]
-		spawnCharacter(marker.position)
+		var face = randi_range(0,1)
+		var marker = spawnArray[face]
+		
+		spawnCharacter(face, marker.global_position)
+		print(currentCharacters, "vs. ", maxCharacters)
